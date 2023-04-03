@@ -1,3 +1,5 @@
+MAX_SIZE = 100
+
 class Sequential_list:
     def __init__(self):
         self.list = []
@@ -9,6 +11,12 @@ class Sequential_list:
         else:
             return False
     
+    def is_full(self):
+        if self.qtd_elements == MAX_SIZE:
+            return True
+        else:
+            return False    
+
     def get_size(self):
         return self.qtd_elements
     
@@ -39,7 +47,7 @@ class Sequential_list:
             return None
     
     def insert(self, value, position):
-        if position < 0 or position > (self.qtd_elements + 1):
+        if position < 0 or position > (self.qtd_elements + 1) or self.is_full():
             return False
         else:
             if position == (self.qtd_elements + 1):
