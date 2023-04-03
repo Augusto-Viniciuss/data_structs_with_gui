@@ -52,9 +52,6 @@ class Sequential_list:
         else:
             if position == (self.qtd_elements + 1):
                 self.list.append(value);
-                self.qtd_elements = self.qtd_elements + 1
-                
-                return True
             else:
                 self.list.append(self.list[self.qtd_elements - 1])
                 
@@ -62,9 +59,10 @@ class Sequential_list:
                     self.list[i] = self.list[i - 1]
                     
                 self.list[position - 1]
-                self.qtd_elements = self.qtd_elements + 1
-                
-                return True
+        
+            self.qtd_elements = self.qtd_elements + 1
+            
+            return True
     
     def remove(self, position):
         if self.is_empty() or position < 0 or position > self.qtd_elements:

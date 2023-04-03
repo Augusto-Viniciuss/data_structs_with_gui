@@ -46,10 +46,6 @@ class Linked_list:
             if position == 1:
                 new_node = Node(value, self.first_node)
                 self.first_node = new_node
-                
-                self.qtd_elements = self.qtd_elements + 1
-                
-                return True
             else:
                 aux_node = self.first_node
 
@@ -59,9 +55,9 @@ class Linked_list:
                 new_node = Node(value, aux_node.get_next_node())
                 aux_node.set_next_node(new_node)
                 
-                self.qtd_elements = self.qtd_elements + 1
-                
-                return True
+            self.qtd_elements = self.qtd_elements + 1
+            
+            return True
             
     def remove(self, position):
         if self.is_empty() or position < 0 or position > self.qtd_elements:
