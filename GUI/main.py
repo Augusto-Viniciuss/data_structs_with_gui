@@ -11,7 +11,7 @@ button_height = 50
 
 #Criando e definindo o tamanho da janela principal
 screen = pygame.display.set_mode((800, 600))
-screen.fill("black")
+screen.fill((0,0,0))
 
 
 #Define the rectangle
@@ -27,18 +27,26 @@ pygame.draw.rect(screen, button_color, button_3)
 pygame.draw.rect(screen, button_color, button_4)
 
 #Criando texto
-font = pygame.font.SysFont('Arial', 36)
-text_surface = font.render('Estruturas de dados', True, (255, 255, 255))
-screen.blit(text_surface, (screen_width/2 - 150, 150))
+# font = pygame.font.SysFont('Arial', 36)
+# text_surface = font.render('Estruturas de dados', True, (255, 255, 255))
+# screen.blit(text_surface, (screen_width/2 - 150, 150))
+
+#Colocando a imagem titulo
+image = pygame.image.load('img/ed.png')
+position_x = 0
+position_y = 0
+screen.blit(image, (position_x, position_y))
+pygame.display.update()
 
 #Adding text to the buttons
-font = pygame.font.SysFont('Arial', 17)
+font = pygame.font.SysFont('freesans', 17)
 text_surface = font.render('Lista Sequencial', True, (255, 255, 255))
-screen.blit(text_surface, (screen_width/2 - button_width/2 + 20, screen_height/10*5 + 5))
+screen.blit(text_surface, (screen_width/2 - button_width/2 + 30, screen_height/10*5 + 15))
+
 text_surface = font.render('Lista Simplesmente ', True, (255, 255, 255))
 screen.blit(text_surface, (screen_width/2 - button_width/2 + 20, screen_height/10*6 + 5))
 text_surface = font.render('Encadeada', True, (255, 255, 255))
-screen.blit(text_surface, (screen_width/2 - button_width/2 + 20, screen_height/10*6+20 + 5))
+screen.blit(text_surface, (screen_width/2 - button_width/2 + 30, screen_height/10*6+20 + 5))
 text_surface = font.render('Lista Duplamente ', True, (255, 255, 255))
 screen.blit(text_surface, (screen_width/2 - button_width/2 + 20, screen_height/10*7 + 5))
 text_surface = font.render('Encadeada', True, (255, 255, 255))
@@ -49,7 +57,7 @@ pygame.display.flip()
 
 screen_flag = "main"
 
-running = True;
+running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
@@ -57,19 +65,19 @@ while running:
             if screen_flag == "main":
                 if button_1.collidepoint(event.pos):
                     # código que atualiza a tela aqui
-                    screen.fill("blue")
+                    screen.fill((255,0,0))
                     screen_flag = "first button"
                     pygame.display.update()
                 
                 if button_2.collidepoint(event.pos):
                     # código que atualiza a tela aqui
-                    screen.fill("pink")
+                    screen.fill((0,255,0))
                     screen_flag = "second button"
                     pygame.display.update()
                     
                 if button_3.collidepoint(event.pos):
                     # código que atualiza a tela aqui
-                    screen.fill("green")
+                    screen.fill((0,0,255))
                     screen_flag = "third button"
                     pygame.display.update()
                 
@@ -85,12 +93,15 @@ while running:
                 print("ok")
 
             elif screen_flag == "third button":
-               print("ok")
+                print("ok")
 
         
         if event.type == pygame.QUIT:
             running = False
+        
+        pygame.display.update()
             
 pygame.quit()
-            
+
+#just see if             
     
