@@ -8,10 +8,11 @@ screen_height = 600
 button_width = 200
 button_height = 50
 
+PRETO = (0,0,0)
 
 #Criando e definindo o tamanho da janela principal
 screen = pygame.display.set_mode((screen_width, screen_height))
-screen.fill((0,0,0))        #definindo a cor como branco
+screen.fill(PRETO)        #definindo a cor como branco
 
 
 #Colocando a imagem titulo
@@ -24,22 +25,22 @@ pygame.display.update()
 #definindo os botoes por imagem
 button1 = pygame.image.load("img/b1.png")
 button1_rect = button1.get_rect()
-button1_rect.center = (screen_width // 2, 300)
+button1_rect.center = (screen_width // 2, screen_height/2)
 screen.blit(button1, button1_rect)
 
 button2 = pygame.image.load("img/b2.png")
 button2_rect = button2.get_rect()
-button2_rect.center = (screen_width // 2, 365)
+button2_rect.center = (screen_width // 2, screen_height/2 + 65)
 screen.blit(button2, button2_rect)
 
 button3 = pygame.image.load("img/b3.png")
 button3_rect = button3.get_rect()
-button3_rect.center = (screen_width // 2, 430)
+button3_rect.center = (screen_width // 2, screen_height/2 + (65*2))
 screen.blit(button3, button3_rect)
 
 button4 = pygame.image.load("img/b4.png")
 button4_rect = button4.get_rect()
-button4_rect.center = (screen_width // 2, 495)
+button4_rect.center = (screen_width // 2, screen_height/2 + (65*3))
 screen.blit(button4, button4_rect)
 
 
