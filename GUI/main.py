@@ -27,20 +27,20 @@ button1_rect = button1.get_rect()
 button1_rect.center = (screen_width // 2, 300)
 screen.blit(button1, button1_rect)
 
-# button2 = pygame.image.load("img/b2.png")
-# button2_rect = button2.get_rect()
-# button2_rect.center = (screen_width // 2, 365)
-# screen.blit(button2, button2_rect)
+button2 = pygame.image.load("img/b2.png")
+button2_rect = button2.get_rect()
+button2_rect.center = (screen_width // 2, 365)
+screen.blit(button2, button2_rect)
 
-# button3 = pygame.image.load("img/b3.png")
-# button3_rect = button3.get_rect()
-# button3_rect.center = (screen_width // 2, 500)
-# screen.blit(button3, button3_rect)
+button3 = pygame.image.load("img/b3.png")
+button3_rect = button3.get_rect()
+button3_rect.center = (screen_width // 2, 430)
+screen.blit(button3, button3_rect)
 
-# button4 = pygame.image.load("img/b4.png")
-# button4_rect = button4.get_rect()
-# button4_rect.center = (screen_width // 2, screen_height // 2 + 210)
-# screen.blit(button4, button4_rect)
+button4 = pygame.image.load("img/b4.png")
+button4_rect = button4.get_rect()
+button4_rect.center = (screen_width // 2, 495)
+screen.blit(button4, button4_rect)
 
 
 screen_flag = "main"
@@ -56,19 +56,19 @@ while running:
                     screen_flag = "first button"
                     pygame.display.update()
                 
-                # if button_2.collidepoint(event.pos):
-                #     screen.fill((0,0,0))
-                #     screen_flag = "second button"
-                #     pygame.display.update()
+                if button2_rect.collidepoint(event.pos):
+                    screen.fill((0,0,0))
+                    screen_flag = "second button"
+                    pygame.display.update()
                     
-                # if button_3.collidepoint(event.pos):
-                #     screen.fill((0,0,0))
-                #     screen_flag = "third button"
-                #     pygame.display.update()
+                if button3_rect.collidepoint(event.pos):
+                    screen.fill((0,0,0))
+                    screen_flag = "third button"
+                    pygame.display.update()
                 
-                # if button_4.collidepoint(event.pos):
-                #     running = False
-                #     pygame.display.update()
+                if button4_rect.collidepoint(event.pos):
+                    running = False
+                    pygame.display.update()
                 
         elif screen_flag == "first button":                    
             font = pygame.font.SysFont('impact', 17)
