@@ -2,27 +2,27 @@ import pygame
 
 pygame.init()
 
+#some parameters being defined 
 screen_width = 800
 screen_height = 600
-
 button_width = 200
 button_height = 50
+button_spacing = 65     
+BLACK = (0,0,0)
 
-PRETO = (0,0,0)
-
-#Criando e definindo o tamanho da janela principal
+#creating and defining the main window
 screen = pygame.display.set_mode((screen_width, screen_height))
-screen.fill(PRETO)        #definindo a cor como branco
+screen.fill(BLACK)        
 
 
-#Colocando a imagem titulo
+#image of the main title
 image = pygame.image.load('img/ed2.png')
 position_x = 0
 position_y = 0
 screen.blit(image, (position_x, position_y))
 pygame.display.update()
 
-#definindo os botoes por imagem
+#defining the buttons using image
 button1 = pygame.image.load("img/b1.png")
 button1_rect = button1.get_rect()
 button1_rect.center = (screen_width // 2, screen_height/2)
@@ -30,21 +30,21 @@ screen.blit(button1, button1_rect)
 
 button2 = pygame.image.load("img/b2.png")
 button2_rect = button2.get_rect()
-button2_rect.center = (screen_width // 2, screen_height/2 + 65)
+button2_rect.center = (screen_width // 2, screen_height/2 + button_spacing)
 screen.blit(button2, button2_rect)
 
 button3 = pygame.image.load("img/b3.png")
 button3_rect = button3.get_rect()
-button3_rect.center = (screen_width // 2, screen_height/2 + (65*2))
+button3_rect.center = (screen_width // 2, screen_height/2 + (button_spacing*2))
 screen.blit(button3, button3_rect)
 
 button4 = pygame.image.load("img/b4.png")
 button4_rect = button4.get_rect()
-button4_rect.center = (screen_width // 2, screen_height/2 + (65*3))
+button4_rect.center = (screen_width // 2, screen_height/2 + (button_spacing*3))
 screen.blit(button4, button4_rect)
 
 
-screen_flag = "main"
+screen_flag = "main"           #this flag indicates in which window the user is placed
 
 running = True
 while running:
@@ -53,17 +53,17 @@ while running:
             
             if screen_flag == "main":
                 if button1_rect.collidepoint(event.pos):
-                    screen.fill((0,0,0))
+                    screen.fill(BLACK)
                     screen_flag = "first button"
                     pygame.display.update()
                 
                 if button2_rect.collidepoint(event.pos):
-                    screen.fill((0,0,0))
+                    screen.fill(BLACK)
                     screen_flag = "second button"
                     pygame.display.update()
                     
                 if button3_rect.collidepoint(event.pos):
-                    screen.fill((0,0,0))
+                    screen.fill(BLACK)
                     screen_flag = "third button"
                     pygame.display.update()
                 
@@ -72,25 +72,25 @@ while running:
                     pygame.display.update()
                 
         elif screen_flag == "first button":                    
-            font = pygame.font.SysFont('impact', 17)
+            font = pygame.font.SysFont('impact', 17)             #just to fill the window (must be removed)
             text_surface = font.render('essa eh a primeira janela', True, (255, 255, 255))
             screen.blit(text_surface, (100, 100))
             pygame.display.flip()
 
         elif screen_flag == "second button":
-            font = pygame.font.SysFont('impact', 17)
+            font = pygame.font.SysFont('impact', 17)            #just to fill the window (must be removed)
             text_surface = font.render('essa eh a seconda janela', True, (255, 255, 255))
             screen.blit(text_surface, (100, 100))
             pygame.display.flip()
 
         elif screen_flag == "third button":
-            font = pygame.font.SysFont('impact', 17)
+            font = pygame.font.SysFont('impact', 17)            #just to fill the window (must be removed)
             text_surface = font.render('essa eh a third janela', True, (255, 255, 255))
             screen.blit(text_surface, (100, 100))
             pygame.display.flip()
 
         
-        if event.type == pygame.QUIT:    #se o usuario apertar o "x"
+        if event.type == pygame.QUIT:    #if the user press the "x"
             running = False
         
         pygame.display.update()
