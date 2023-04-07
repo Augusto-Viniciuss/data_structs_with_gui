@@ -22,7 +22,7 @@ class Doubly_linked_list:
             if position > (self.qtd_elements / 2):
                 aux_node = self.last_node
                 
-                for i in range(self.qtd_elements, (position - 1)):
+                for i in range(self.qtd_elements, position, -1):
                     aux_node = aux_node.get_previous_node()
                 
                 return aux_node.get_value()
@@ -68,8 +68,8 @@ class Doubly_linked_list:
                 if position > (self.qtd_elements / 2):
                     aux_node = self.last_node
 
-                    for i in range(self.qtd_elements, (position - 2), -1):
-                        aux_node = aux_node.get_next_node()
+                    for i in range(self.qtd_elements, (position - 1), -1):
+                        aux_node = aux_node.get_previous_node()
                     
                     new_node = Node(value, aux_node.get_next_node(), aux_node)
                     new_node.get_next_node().set_previous_node(new_node)
@@ -77,7 +77,7 @@ class Doubly_linked_list:
                 else: 
                     aux_node = self.first_node
 
-                    for i in range(position - 2):
+                    for i in range(position - 1):
                         aux_node = aux_node.get_next_node()
                     
                     new_node = Node(value, aux_node.get_next_node(), aux_node)
@@ -112,7 +112,7 @@ class Doubly_linked_list:
                 if position > (self.qtd_elements / 2):
                     aux_node = self.last_node
 
-                    for i in range(self.qtd_elements, (position - 2), -1):
+                    for i in range(self.qtd_elements, (position - 1), -1):
                         aux_node = aux_node.get_next_node()
                     
                     removed_value = aux_node.get_next_node().get_value()
@@ -121,7 +121,7 @@ class Doubly_linked_list:
                 else: 
                     aux_node = self.first_node
 
-                    for i in range(position - 2):
+                    for i in range(position - 1):
                         aux_node = aux_node.get_next_node()
                     
                     removed_value = aux_node.get_next_node().get_value()

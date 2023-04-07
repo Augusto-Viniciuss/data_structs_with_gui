@@ -15,7 +15,7 @@ class Linked_list:
         return self.qtd_elements
     
     def get_element(self, position):
-        if self.is_empty() or position < 0 or position > self.qtd_elements:
+        if self.is_empty() or position <= 0 or position > self.qtd_elements:
             return None
         else:
             aux_node = self.first_node
@@ -40,7 +40,7 @@ class Linked_list:
             return None
     
     def insert(self, value, position):
-        if position < 0 or position > (self.qtd_elements + 1):
+        if position <= 0 or position > (self.qtd_elements + 1):
             return False
         else:
             if position == 1:
@@ -57,24 +57,31 @@ class Linked_list:
                 aux_node.set_next_node(new_node)
                 
             self.qtd_elements = self.qtd_elements + 1
-            
-            print(self.list)
+
             return True
             
     def remove(self, position):
-        if self.is_empty() or position < 0 or position > self.qtd_elements:
+        if self.is_empty() or position <= 0 or position > self.qtd_elements:
             return None
         else:
-            aux_node = self.first_node
-            
-            for i in range(position - 1):
-                aux_node = aux_node.get_next_node()
+            if position == 1:
+                removed_value = self.first_node.get_value()
+                self.first_node = self.first_node.get_next_node()
                 
-            removed_value = aux_node.get_next_node().get_value()
-            aux_node.set_next_node(aux_node._get_next_node().get_next_node())
-            
-            self.qtd_elements = self.qtd_elements - 1
-            
-            return removed_value
+                self.qtd_elements = self.qtd_elements - 1
+                
+                return removed_value
+            else:
+                aux_node = self.first_node
+                
+                for i in range(position - 1):
+                    aux_node = aux_node.get_next_node()
+                    
+                removed_value = aux_node.get_next_node().get_value()
+                aux_node.set_next_node(aux_node.get_next_node().get_next_node())
+                
+                self.qtd_elements = self.qtd_elements - 1
+                
+                return removed_value
 
                 
