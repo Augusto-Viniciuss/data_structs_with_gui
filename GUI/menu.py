@@ -1,4 +1,5 @@
 import pygame
+from seqlist import Seqlist
 
 class Menu():
     def __init__(self, game):
@@ -37,3 +38,20 @@ class MainMenu(Menu):
             mouse_position = pygame.mouse.get_pos() 
             if self.game.collide_point("imgs/b1.png",self.seqlistx,self.seqlisty, mouse_position):
                 self.run_display = False
+                #self.game.curr_menu = Seqlist(self)
+                #Nessa parte ele deveria trocar de tela para a Seqlist mas da um erro ai, tenta ver o que pode ser
+            elif self.game.collide_point("imgs/b2.png", self.chainlistx, self.chainlisty, mouse_position):
+                self.run_display = False
+                
+            elif self.game.collide_point("imgs/b3.png", self.chainlistx, self.chainlisty, mouse_position):
+                self.run_display = False
+                
+            elif self.game.collide_point("imgs/b4.png", self.exitx,self.exity, mouse_position):
+                self.run_display = False
+                self.game.running = False
+                self.run_display = False
+                
+        elif self.game.BACK_KEY:
+            self.run_display = False
+            self.game.running = False
+            self.run_display = False

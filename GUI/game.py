@@ -1,11 +1,12 @@
 import pygame
 
 from menu import MainMenu
+from seqlist import Seqlist
 
 class Game():
     def __init__(self):
         pygame.init()
-        self.running, self.playing = True, False
+        self.running = True
         self.MOUSE1, self.BACK_KEY = False, False
         self.DISPLAY_W, self.DISPLAY_H = 800, 600
         self.display = pygame.Surface((self.DISPLAY_W,self.DISPLAY_H))
@@ -13,23 +14,7 @@ class Game():
         self.font_name = pygame.font.get_default_font()
         self.BLACK, self.WHITE = (0,0,0), (255,255,255)
         self.curr_menu = MainMenu(self)
-
-    def game_loop(self):
-        while self.playing:
-            self.check_events()
-            
-            if self.BACK_KEY:
-                self.playing = False
-
-            self.display.fill(self.BLACK)
-            
-            self.draw_text('Thanks for working!!', 20, self.DISPLAY_W/2, self.DISPLAY_H/2)
-
-            self.window.blit(self.display, (0,0))
-            
-            pygame.display.update()
-            
-            self.reset_keys()
+        #aqui que ele tava definindo a tela inicial, se tu troca isso pra Seqlist(self) ele começa na tela da Seqlist mas nao sei como troca
 
     def check_events(self):
         for event in pygame.event.get():
