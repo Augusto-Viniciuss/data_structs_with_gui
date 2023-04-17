@@ -1,5 +1,7 @@
 import pygame
 from seqlist import Seqlist
+from chainlist import Chainlist
+from doublechainlist import Doublechainlist
 
 class Menu():
     def __init__(self, game):
@@ -20,11 +22,13 @@ class MainMenu(Menu):
         self.doublechainlistx, self.doublechainlisty = self.mid_w, self.mid_h + (65*2)
         self.exitx, self.exity = self.mid_w, self.mid_h + (65*3)
 
-    def display_menu(self):
+    def show_display(self):
         self.run_display = True
         while self.run_display:
             self.game.check_events()
-            self.check_input()
+            self.flag_input = self.check_input()
+            if self.flag_input != None:
+                return self.flag_input
             self.game.display.fill(self.game.BLACK)
             self.game.add_img("imgs/ed2.png",self.mid_w,100)
             self.game.add_img("imgs/b1.png",self.seqlistx,self.seqlisty)
@@ -32,19 +36,23 @@ class MainMenu(Menu):
             self.game.add_img("imgs/b3.png",self.doublechainlistx,self.doublechainlisty)
             self.game.add_img("imgs/b4.png",self.exitx,self.exity)
             self.blit_screen()
+        
+        return 0
 
     def check_input(self):
         if self.game.MOUSE1:
             mouse_position = pygame.mouse.get_pos() 
             if self.game.collide_point("imgs/b1.png",self.seqlistx,self.seqlisty, mouse_position):
                 self.run_display = False
-                #self.game.curr_menu = Seqlist(self)
-                #Nessa parte ele deveria trocar de tela para a Seqlist mas da um erro ai, tenta ver o que pode ser
+                self.game.curr_menu = Seqlist(self.game)
+
             elif self.game.collide_point("imgs/b2.png", self.chainlistx, self.chainlisty, mouse_position):
                 self.run_display = False
+                self.game.curr_menu = Chainlist(self.game)
                 
-            elif self.game.collide_point("imgs/b3.png", self.chainlistx, self.chainlisty, mouse_position):
+            elif self.game.collide_point("imgs/b3.png", self.doublechainlistx, self.doublechainlisty, mouse_position):
                 self.run_display = False
+                self.game.curr_menu = Doublechainlist(self.game)
                 
             elif self.game.collide_point("imgs/b4.png", self.exitx,self.exity, mouse_position):
                 self.run_display = False

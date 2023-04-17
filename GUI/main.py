@@ -1,7 +1,5 @@
-from game import Game
+from WindowManager import WindowManager
 
-g = Game()
+fds = WindowManager()
 
-while g.running:
-    g.curr_menu.display_menu()
-    #o problema pode ser aqui tambem mas nao tenho ctz
+fds.run_app()
