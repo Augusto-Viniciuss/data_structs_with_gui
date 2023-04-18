@@ -1,5 +1,5 @@
-from WindowManager import WindowManager
+from appManager import AppManager
 
-fds = WindowManager()
+app = AppManager()
 
-fds.run_app()
+app.run_app()

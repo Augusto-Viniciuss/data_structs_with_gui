@@ -1,41 +1,25 @@
 import pygame
-from menu import MainMenu
-from seqlist import Seqlist
 
-class WindowManager():
-    def __init__(self):
-        pygame.init()
-        self.running = True
+class WindowManager:
+    def __init__(self, font = pygame.font.get_default_font()):
         self.MOUSE1, self.BACK_KEY = False, False
         self.DISPLAY_W, self.DISPLAY_H = 800, 600
         self.display = pygame.Surface((self.DISPLAY_W,self.DISPLAY_H))
         self.window = pygame.display.set_mode(((self.DISPLAY_W, self.DISPLAY_H)))
-        self.font_name = pygame.font.get_default_font()
+        self.font_name = font
         self.BLACK, self.WHITE, self.RED, self.GREEN = (0,0,0), (255,255,255), (255,0,0), (0,255,0)
-        self.current_window = None
-
-    def run_app(self):
-        self.current_window = MainMenu()
-
-        while self.running:
-            next_window = self.current_window.show_display()
-            if next_window == 1:
-                self.current_window = Seqlist()
-            elif next_window == 0:
-                self.current_window = MainMenu()
-
+    
     def check_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                self.running, self.playing = False, False
-                self.current_window.run_display = False
+                self.window.run_display = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     self.BACK_KEY = True
-            if event.type ==pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     self.MOUSE1 = True
-    
+
     def reset_keys(self):
         self.MOUSE1, self.BACK_KEY = False, False
 
@@ -58,3 +42,8 @@ class WindowManager():
         image_rect.center = (x,y)
         if (image_rect.collidepoint(mouse_position) ):
             return True
+        
+    def blit_screen(self):
+        self.window.blit(self.display, (0,0))
+        pygame.display.update()
+        self.reset_keys()
