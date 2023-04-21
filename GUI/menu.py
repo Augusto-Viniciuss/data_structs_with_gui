@@ -30,12 +30,14 @@ class Menu():
         if self.wm.MOUSE1:
             mouse_position = pygame.mouse.get_pos() 
             if self.wm.collide_point("imgs/b1.png",self.seqlistx,self.seqlisty, mouse_position):
-                return 1
-            elif self.wm.collide_point("imgs/b2.png", self.chainlistx, self.chainlisty, mouse_position):
                 return 2
-            elif self.wm.collide_point("imgs/b3.png", self.doublechainlistx, self.doublechainlisty, mouse_position):
+            elif self.wm.collide_point("imgs/b2.png", self.chainlistx, self.chainlisty, mouse_position):
                 return 3
+            elif self.wm.collide_point("imgs/b3.png", self.doublechainlistx, self.doublechainlisty, mouse_position):
+                return 4
             elif self.wm.collide_point("imgs/b4.png", self.exitx,self.exity, mouse_position):
                 return -1
         elif self.wm.BACK_KEY:
+            return -1
+        elif self.wm.quit == True:
             return -1

@@ -15,14 +15,13 @@ class AppManager():
 
         while self.running:
             next_window = self.current_window.show_display()
-            if self.current_window.id == "menu":
-                if next_window == -1:
-                    self.running = False
-                elif next_window == 1:
-                    self.current_window = Seqlist()
-                elif next_window == 2:
-                    self.current_window = ChainList()
-                elif next_window == 3:
-                    self.current_window = DoubleChainList()
-            else:
+            if next_window == -1:
+                self.running = False
+            elif next_window == 1:
                 self.current_window = Menu()
+            elif next_window == 2:
+                self.current_window = Seqlist()
+            elif next_window == 3:
+                self.current_window = ChainList()
+            elif next_window == 4:
+                self.current_window = DoubleChainList()
