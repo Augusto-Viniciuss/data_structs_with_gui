@@ -97,8 +97,7 @@ class WindowManager:
                     if active: 
                         if event.key == pygame.K_RETURN:      #if the enter is pressed
                             active = False
-                            pygame.time.delay(500)  #just adding a delay to erase all
-                            user_text = ''
+                            #user_text = ''
                         
                         elif event.key == pygame.K_BACKSPACE:  #the button to erase
                             user_text = user_text[:-1]
