@@ -1,1 +1,1 @@
-# data_structures_py_with_gui
+# data_structs_with_gui
