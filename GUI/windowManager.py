@@ -40,7 +40,7 @@ class WindowManager:
         image = pygame.image.load(icon)
         image_rect = image.get_rect()
         image_rect.center = (x,y)
-        if (image_rect.collidepoint(mouse_position) ):
+        if (image_rect.collidepoint(mouse_position)):
             return True
         
     def blit_screen(self):

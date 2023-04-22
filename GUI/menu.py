@@ -25,6 +25,7 @@ class Menu():
             self.wm.add_img("imgs/b3.png",self.doublechainlistx,self.doublechainlisty)
             self.wm.add_img("imgs/b4.png",self.exitx,self.exity)
             self.wm.blit_screen()
+            self.wm.reset_keys()
 
     def check_input(self):
         if self.wm.MOUSE1:

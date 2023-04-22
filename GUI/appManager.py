@@ -1,4 +1,5 @@
 import pygame
+from windowManager import WindowManager
 from menu import Menu
 from seqlist import Seqlist
 from chainlist import ChainList
@@ -9,6 +10,7 @@ class AppManager():
         pygame.init()
         self.running = True
         self.current_window = None
+        self.sreen()
 
     def run_app(self):
         self.current_window = Menu()

@@ -17,6 +17,7 @@ class ChainList():
                 return self.flag_input
             self.wm.display.fill(self.wm.WHITE)
             self.wm.blit_screen()
+            self.wm.reset_keys()
             
     def check_input(self):
         if self.wm.MOUSE1:
