@@ -10,6 +10,7 @@ class WindowManager:
         self.BLACK, self.WHITE, self.RED, self.GREEN, self.GRAY = (0,0,0), (255,255,255), (255,0,0), (0,255,0), pygame.Color('gray15')
         self.GRAY, self.LIGHTBLUE = pygame.Color('gray15'), pygame.Color('lightskyblue3')
         self.quit = False
+        self.BOX_W, self.BOX_H = 150, 30
     
     def check_events(self):
         for event in pygame.event.get():
@@ -55,53 +56,111 @@ class WindowManager:
         pygame.display.update()
         self.reset_keys()
         
-    def draw_rect(self, posx, posy, rectx, recty, color, rectborder):
-        rect = pygame.Rect(posx, posy, rectx, recty)
+    def draw_rect(self, posx, posy, rect_w, rect_h, color, rectborder):
+        rect = pygame.Rect(posx, posy, rect_w, rect_h)
         pygame.draw.rect(self.display, color, rect, rectborder)
-
-    def text_input_box(self):
-        text , return_text= '', ''
-        active = True
-        text_size = 32
-        base_font = pygame.font.Font(None, text_size)
-        posx, posy = 200, 200
-        rectx, recty = 140, 32
         
-        input_rect = pygame.Rect(posx, posy, rectx, recty)
-        back_rect = pygame.Rect(posx, posy, rectx+5, recty+5)
-
+    def draw_inputbox(self, posx, posy, color):
+    
+        rectborder = 2        #defining the boarder of the input box
         
-        while active:
-            for event in pygame.event.get():            
-                if event.type == pygame.QUIT:
-                    self.quit = True
-                    active = False
-                if event.type == pygame.KEYDOWN:           #if any button is pressed 
-                    if event.key == pygame.K_RETURN:      #if the enter is pressed
-                        print(text)
-                        active = False
-                        text = ''
-                        return return_text
-                    elif event.key == pygame.K_BACKSPACE:
-                        text = text[:-1]
-                    elif event.key == pygame.K_ESCAPE:
-                        active = False
-                    else:
-                        text += event.unicode
+        rect = pygame.Rect(posx- self.BOX_W, posy - self.BOX_H, self.BOX_W, self.BOX_H)        #defining the retangle
+        pygame.draw.rect(self.display, color, rect, rectborder)  #drawing the retangle in the screen
+        
+        return rect
 
-            pygame.draw.rect(self.window, self.BLACK, back_rect)
-            if active:
-                pygame.draw.rect(self.window, self.LIGHTBLUE, input_rect, 2)
-            else:
-                pygame.draw.rect(self.window, self.GRAY, input_rect, 2)
-            text_surface = base_font.render(text, True, self.WHITE)     
-            self.window.blit(text_surface, (input_rect.x + 5, input_rect.y +5))
+    
+    def logic_inputbox(self, input_box):
+      
+        clock = pygame.time.Clock()
+        font_text = pygame.font.Font(None, 25)
+        user_text = ''
+    
+        active = False
+        while True:
             
-            input_rect.w = max(rectx , text_surface.get_width() + 10)
-            if back_rect.w < (input_rect.w+5):
-                back_rect.w += text_size
-
-            pygame.display.update()
-
-            self.reset_keys()
+            for event in pygame.event.get():
+            
+                if event.type == pygame.K_ESCAPE:     #if ESC is pressed
+                    return 1 
+                elif event.type == pygame.QUIT:      #if QUIT is pressed
+                    return -1
                 
+                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1: #if the mouse is pressed
+                    if input_box.collidepoint(event.pos):         
+                        active = True
+                    else:
+                        active = False
+                    
+                if event.type == pygame.KEYDOWN:    #if the keyboard is pressed
+                        
+                    if active: 
+                        if event.key == pygame.K_RETURN:      #if the enter is pressed
+                            active = False
+                            pygame.time.delay(500)  #just adding a delay to erase all
+                            user_text = ''
+                        
+                        elif event.key == pygame.K_BACKSPACE:  #the button to erase
+                            user_text = user_text[:-1]
+                                        
+                        elif event.unicode.isnumeric():      #any number is added
+                            user_text += event.unicode
+                                    
+                if active:
+                    current_color = self.LIGHTBLUE
+                else:
+                    current_color = self.GRAY
+                
+            self.window.fill(self.BLACK)
+            pygame.draw.rect(self.window, current_color, input_box, 2) 
+            text_surface = font_text.render(user_text, True, self.WHITE)
+            self.window.blit(text_surface, (input_box.x + 5, input_box.y + 5))     #just a spacing to the text in the box
+            input_box.w = max(150, text_surface.get_width() + 15)
+            pygame.display.flip()
+            clock.tick(60)
+                        
+  # def text_input_box(self):
+    #     text , return_text= '', ''
+    #     active = True
+    #     text_size = 32
+    #     base_font = pygame.font.Font(None, text_size)
+    #     posx, posy = 200, 200
+    #     rectx, recty = 140, 32
+        
+    #     input_rect = pygame.Rect(posx, posy, rectx, recty)
+    #     back_rect = pygame.Rect(posx, posy, rectx+5, recty+5)
+
+        
+    #     while active:
+    #         for event in pygame.event.get():            
+    #             if event.type == pygame.QUIT:
+    #                 self.quit = True
+    #                 active = False
+    #             if event.type == pygame.KEYDOWN:           #if any button is pressed 
+    #                 if event.key == pygame.K_RETURN:      #if the enter is pressed
+    #                     print(text)
+    #                     active = False
+    #                     text = ''
+    #                     return return_text
+    #                 elif event.key == pygame.K_BACKSPACE:
+    #                     text = text[:-1]
+    #                 elif event.key == pygame.K_ESCAPE:
+    #                     active = False
+    #                 else:
+    #                     text += event.unicode
+
+    #         pygame.draw.rect(self.window, self.BLACK, back_rect)
+    #         if active:
+    #             pygame.draw.rect(self.window, self.LIGHTBLUE, input_rect, 2)
+    #         else:
+    #             pygame.draw.rect(self.window, self.GRAY, input_rect, 2)
+    #         text_surface = base_font.render(text, True, self.WHITE)     
+    #         self.window.blit(text_surface, (input_rect.x + 5, input_rect.y +5))
+            
+    #         input_rect.w = max(rectx , text_surface.get_width() + 10)
+    #         if back_rect.w < (input_rect.w+5):
+    #             back_rect.w += text_size
+
+    #         pygame.display.update()
+
+    #         self.reset_keys()

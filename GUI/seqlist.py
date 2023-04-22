@@ -13,39 +13,15 @@ class Seqlist():
         
     def show_display(self):
         
-        font_text = pygame.font.Font(None, 32)
-        user_text = ''
+        inputbox_fake = self.wm.draw_inputbox(self.mid_w, self.mid_h, self.wm.GRAY) #getting the dimensions of the first input box
+        self.wm.blit_screen()       #updating the screen
+        
+        return_function = self.wm.logic_inputbox(inputbox_fake)
+        
+        if return_function == 1 or return_function == -1:
+            return -1     
     
-        while True:
-            self.wm.check_events()
-            
-            if self.wm.BACK_KEY:           #if ESC is pressed
-                return 1 
-            elif self.wm.quit == True:      #if QUIT is pressed
-                return -1
-            
-            elif self.wm.MOUSE1 == True:          #if the mouse is pressed
-                #mouse_position = pygame.mouse.get_pos()
-                
-                while True: 
-                    for event in pygame.event.get():
-                        
-                        if event.type == pygame.KEYDOWN:    #if the keyboard is pressed
-                            
-                            if event.type == pygame.K_BACKSPACE: #the button to erase a letter
-                                print("entered here")
-                                user_text = user_text[:-1]
-                                
-                            else:                           #any other button is added
-                                user_text += event.unicode
-                            
-                    self.wm.window.fill(self.wm.BLACK)
-                    text_surface = font_text.render(user_text, True, self.wm.WHITE)
-                    self.wm.window.blit(text_surface, (0,0))
-                    pygame.display.flip()
-    
-            
-            
+        
     # def show_display(self):
         
     #     color_inactive = pygame.Color('gray15')
@@ -66,14 +42,4 @@ class Seqlist():
         
     #         self.wm.blit_screen()
             
-    # def check_input(self):
-        
-    #     if self.wm.MOUSE1:
-    #         mouse_position = pygame.mouse.get_pos()
-    #         if self.input_rect.collidepoint(mouse_position):
-    #             self.wm.check_text()
-
-    #     elif self.wm.BACK_KEY:
-    #         return 1
-    #     elif self.wm.quit == True:
-    #         return -1
+    # 
