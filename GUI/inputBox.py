@@ -24,19 +24,21 @@ class InputBox:
             if self.active:
                 if event.key == pygame.K_RETURN:
                     # If the user pressed Return, clear the input box and print the input.
-                    print(self.text)
-                    self.text = ''
+                    #print(self.text)
+                    #self.text = ''
+                    self.active = False
+                    self.color = pygame.Color('gray15')
                 elif event.key == pygame.K_BACKSPACE:
                     # If the user pressed Backspace, remove the last character from the input.
                     self.text = self.text[:-1]
                 elif event.key == pygame.K_ESCAPE:
                     self.active = False
                 elif event.unicode.isnumeric():           # if the user typed a number, add it to the input
-                    if self.txt_surface.get_width() < self.BOX_W-30: 
+                    if self.txt_surface.get_width() < self.BOX_W-90: 
                         self.text += event.unicode
                 # Re-render the text.
                 
-                self.txt_surface = pygame.font.Font(None, 25).render(self.text, True, self.color)
+                self.txt_surface = pygame.font.Font(None, 25).render(self.text, True, pygame.Color('white'))
 
 
     def draw(self, screen):

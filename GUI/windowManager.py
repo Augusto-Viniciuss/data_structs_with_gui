@@ -31,9 +31,9 @@ class WindowManager:
     def reset_keys(self):
         self.MOUSE1, self.BACK_KEY, self.ENTER, self.BACKSPACE = False, False, False, False
 
-    def draw_text(self, text, size, x, y):
+    def draw_text(self, text, size, x, y, color):
         font = pygame.font.Font(self.font_name,size)
-        text_surface = font.render(text, True, self.WHITE)
+        text_surface = font.render(text, True, color)
         text_rect = text_surface.get_rect()
         text_rect.center = (x,y)
         self.display.blit(text_surface, text_rect)
