@@ -1,12 +1,14 @@
 import pygame
 
 class InputBox:
-    def __init__(self, x, y, w, h, text=''):
-        self.rect = pygame.Rect(x, y, w, h)
-        self.color = pygame.Color('lightskyblue3')
+    def __init__(self, xpos, ypos, width = 115, height = 32, text = ''):
+        self.X_POS, self.Y_POS, self.BOX_W, self.BOX_H = xpos, ypos, 115, 32
+        self.rect = pygame.Rect(xpos, ypos, width, height)
+        self.color = pygame.Color('grey15')
         self.text = text
         self.txt_surface = pygame.font.Font(None, 32).render(text, True, self.color)
         self.active = False
+        
 
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -17,7 +19,7 @@ class InputBox:
             else:
                 self.active = False
             # Change the color of the input box.
-            self.color = pygame.Color('dodgerblue2') if self.active else pygame.Color('lightskyblue3')
+            self.color = pygame.Color('lightskyblue3') if self.active else pygame.Color('gray15')
         if event.type == pygame.KEYDOWN:
             if self.active:
                 if event.key == pygame.K_RETURN:
@@ -29,11 +31,13 @@ class InputBox:
                     self.text = self.text[:-1]
                 elif event.key == pygame.K_ESCAPE:
                     self.active = False
-                else:
-                    # If the user typed a character, add it to the input.
-                    self.text += event.unicode
+                elif event.unicode.isnumeric():           # if the user typed a number, add it to the input
+                    if self.txt_surface.get_width() < self.BOX_W-30: 
+                        self.text += event.unicode
                 # Re-render the text.
-                self.txt_surface = pygame.font.Font(None, 32).render(self.text, True, self.color)
+                
+                self.txt_surface = pygame.font.Font(None, 25).render(self.text, True, self.color)
+
 
     def draw(self, screen):
         # Blit the input box rect and text surface onto the screen.
