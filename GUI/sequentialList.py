@@ -44,6 +44,9 @@ class SequentialList():
             self.input_box1.draw(self.wm.window)
             self.input_box2.draw(self.wm.window)
             
+            imagem = pygame.image.load("imgs/confirm.png")
+            self.wm.window.blit(imagem, (self.box_x- (self.spacing/2), self.box_y+self.spacing+20))
+        
             
             text_surface = font.render("por posição:", True, self.wm.PURPLE)
             self.wm.window.blit(text_surface, (self.box_x*3-self.spacing, self.box_y+5))  #in the left of the firstbox
