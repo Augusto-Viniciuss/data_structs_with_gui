@@ -60,8 +60,8 @@ class SequentialList():
                         self.wm.draw_text(self.add[1], 30, self.square_number_w+(self.add[0]+1)*self.square_side+self.square_border , self.square_number_h, self.wm.PURPLE)
                     elif(x == self.list.get_size() - 1 and self.add[0] == self.list.get_size()):
                         self.wm.draw_text(self.add[1], 30, self.square_number_w+(self.add[0]+1)*self.square_side+self.square_border , self.square_number_h, self.wm.PURPLE)
-                    else:
-                        for i
+                    # else:
+                    #     for i
 
                     
             self.wm.display.fill(self.wm.BLACK)
