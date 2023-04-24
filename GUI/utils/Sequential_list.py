@@ -1,4 +1,4 @@
-MAX_SIZE = 100
+MAX_SIZE = 10
 
 class Sequential_list:
     def __init__(self):

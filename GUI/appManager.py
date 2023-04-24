@@ -16,9 +16,9 @@ class AppManager():
 
         while self.running:
             next_window = self.current_window.show_display()
-            if next_window == -1:
+            if next_window == "quit":
                 self.running = False
-            elif next_window == 1:
+            elif next_window == "menu":
                 self.current_window = Menu()
             elif next_window == 2:
                 self.current_window = SequentialList()

@@ -7,7 +7,7 @@ class WindowManager:
         self.display = pygame.Surface((self.DISPLAY_W,self.DISPLAY_H))
         self.window = pygame.display.set_mode(((self.DISPLAY_W, self.DISPLAY_H)))
         self.font_name = font
-        self.BLACK, self.WHITE, self.RED, self.PURPLE = (0,0,0), (255,255,255), (255,0,0), (176,146,212)
+        self.BLACK, self.WHITE, self.RED, self.PURPLE, self.YELLOW, self.BLUE = (0,0,0), (255,255,255), (255,0,0), (176,146,212), (255,255,0), (0,0,255)
         self.GRAY, self.LIGHTBLUE = pygame.Color('gray15'), pygame.Color('lightskyblue3')
         self.quit = False
         self.BOX_W, self.BOX_H = 150, 30
