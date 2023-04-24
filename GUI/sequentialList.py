@@ -1,8 +1,7 @@
 import pygame
 from windowManager import WindowManager
 from inputBox import InputBox
-from Sequential_list import Sequential_list
-
+from utils.Sequential_list import Sequential_list
 
 
 class SequentialList():
@@ -39,11 +38,9 @@ class SequentialList():
             self.wm.add_img("imgs/inserir.png", self.box_x+55, self.box_y-30)  #in the top of first column
             self.wm.add_img("imgs/remover.png", self.box_x*2+85, self.box_y-30)  #in the top of second column
             self.wm.add_img("imgs/buscar.png", self.box_x*3+115, self.box_y-30)  #in the top of third column
-            
             self.wm.add_img("imgs/posicao.png", self.box_x-self.spacing, self.box_y+15)  #in the left of first line
             self.wm.add_img("imgs/elemento.png", self.box_x-self.spacing, self.box_y+50+15)  #in the left of second line
-            
-        
+
             
             if self.error_add:
                 self.wm.draw_text("ERROR", 18, self.box_x+55, self.box_y-55, self.wm.RED)
