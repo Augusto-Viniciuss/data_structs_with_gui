@@ -15,6 +15,7 @@ class SequentialList():
         self.wm.blit_screen()
         self.fetch = None
         self.add = None
+        self.remove = None
         self.flag_input = None
         self.input_box1 = InputBox(self.box_x, self.box_y+50)       #box inserir-elemento
         self.input_box2= InputBox(self.box_x, self.box_y)          
@@ -50,20 +51,43 @@ class SequentialList():
                         self.wm.blit_screen()
                         pygame.time.delay(700)
                 elif(self.fetch[0] == "position"):
+                    self.wm.draw_rect(self.square_w+(self.fetch[1])*self.square_side+self.square_border + 5, self.square_h + 5, self.square_side - 10, self.square_side - 10, self.wm.BLACK)
                     self.wm.draw_text(str(self.fetch[2]), 31, self.square_number_w+(self.fetch[1])*self.square_side+self.square_border , self.square_number_h, self.wm.BLUE)
                     
                     self.wm.blit_screen()
                     pygame.time.delay(700)
-            elif (self.flag_input == "add"):
-                for x in range(self.list.get_size()):
-                    if(self.add[0] == 1 and self.list.get_size() == 1):
-                        self.wm.draw_text(self.add[1], 30, self.square_number_w+(self.add[0]+1)*self.square_side+self.square_border , self.square_number_h, self.wm.PURPLE)
-                    elif(x == self.list.get_size() - 1 and self.add[0] == self.list.get_size()):
-                        self.wm.draw_text(self.add[1], 30, self.square_number_w+(self.add[0]+1)*self.square_side+self.square_border , self.square_number_h, self.wm.PURPLE)
-                    else:
-                        for i
+            elif (self.flag_input == "add"): 
+                if(self.add[0] == 1 and self.list.get_size() == 1):
+                    self.wm.draw_text(str(self.add[1]), 30, self.square_number_w+(self.add[0])*self.square_side+self.square_border , self.square_number_h, self.wm.BLUE)
+                    self.wm.blit_screen()
+                    pygame.time.delay(700)
+                elif(self.add[0] == self.list.get_size()):
+                    self.wm.draw_text(str(self.add[1]), 30, self.square_number_w+(self.add[0])*self.square_side+self.square_border , self.square_number_h, self.wm.BLUE)
+                    self.wm.blit_screen()
+                    pygame.time.delay(700)
+                else:
+                    for x in range(self.list.get_size(), self.add[0], -1):
+                        self.wm.draw_text(str(self.list.get_element(x)), 30, self.square_number_w+(x)*self.square_side+self.square_border , self.square_number_h, self.wm.PURPLE)
+                        self.wm.draw_rect(self.square_w+(x - 1)*self.square_side+self.square_border + 5, self.square_h + 5, self.square_side - 10, self.square_side - 10, self.wm.BLACK)
+                        self.wm.blit_screen()
+                        pygame.time.delay(700)
 
+                    self.wm.draw_text(str(self.list.get_element(self.add[0])), 30, self.square_number_w+(self.add[0])*self.square_side+self.square_border , self.square_number_h, self.wm.BLUE)
+                    self.wm.blit_screen()
+                    pygame.time.delay(700)
+            elif self.flag_input == "remove":
+                    self.wm.draw_text(str(self.remove[1]), 30, self.square_number_w+(self.remove[0])*self.square_side+self.square_border , self.square_number_h, self.wm.RED)
+                    self.wm.blit_screen()
+                    pygame.time.delay(700)
                     
+                    for x in range(self.remove[0], self.list.get_size()):
+                        self.wm.draw_rect(self.square_w+(x)*self.square_side+self.square_border + 5, self.square_h + 5, self.square_side - 10, self.square_side - 10, self.wm.BLACK)
+                        self.wm.draw_text(str(self.list.get_element(x)), 30, self.square_number_w+(x)*self.square_side+self.square_border , self.square_number_h, self.wm.PURPLE)                        
+                        self.wm.draw_rect(self.square_w+(x + 1)*self.square_side+self.square_border + 5, self.square_h + 5, self.square_side - 10, self.square_side - 10, self.wm.BLACK)
+
+                        self.wm.blit_screen()
+                        pygame.time.delay(700)
+    
             self.wm.display.fill(self.wm.BLACK)
             
             self.wm.add_img("imgs/ls.png", 400, 70)     #title
@@ -140,10 +164,14 @@ class SequentialList():
                 
                 elif self.wm.collide_point("imgs/enviar.png",self.box_x*2+85, self.box_y+self.spacing+40, mouse_position):
                     if self.input_box3.text != '':
-                        if self.list.remove(int(self.input_box3.text)) == None:
+                        removed_element = self.list.remove(int(self.input_box3.text))
+                        if removed_element == None:
                             self.error_remove = True
+                            return None
                         else:
+                            self.remove = (int(self.input_box3.text), removed_element)
                             self.error_remove = False
+                            return "remove"
                             
                 elif self.wm.collide_point("imgs/enviar.png",self.box_x*3+115, self.box_y+self.spacing+40, mouse_position):
                     element = ''

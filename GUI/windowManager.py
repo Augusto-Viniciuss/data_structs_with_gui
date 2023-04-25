@@ -56,9 +56,12 @@ class WindowManager:
         pygame.display.update()
         self.reset_keys()
         
-    def draw_rect(self, posx, posy, rect_w, rect_h, color, rectborder):
+    def draw_rect(self, posx, posy, rect_w, rect_h, color, rectborder = 0):
         rect = pygame.Rect(posx, posy, rect_w, rect_h)
-        pygame.draw.rect(self.display, color, rect, rectborder)
+        if(rectborder != 0):
+            pygame.draw.rect(self.display, color, rect, rectborder)
+        else:
+            pygame.draw.rect(self.display, color, rect)
         
     def draw_circle_with_text(self, posx, posy, radius, color, thickness = 1, text = "", text_size = 5):
         pygame.draw.circle(self.display, color, (posx, posy), radius, thickness)

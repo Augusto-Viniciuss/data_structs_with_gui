@@ -37,8 +37,8 @@ class Menu():
             elif self.wm.collide_point("imgs/b3.png", self.doublechainlistx, self.doublechainlisty, mouse_position):
                 return 4
             elif self.wm.collide_point("imgs/b4.png", self.exitx,self.exity, mouse_position):
-                return -1
+                return "quit"
         elif self.wm.BACK_KEY:
-            return -1
+            return "quit"
         elif self.wm.quit == True:
-            return -1
+            return "quit"
