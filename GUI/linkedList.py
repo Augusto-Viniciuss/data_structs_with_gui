@@ -76,6 +76,10 @@ class LinkedList():
 
             
             self.wm.blit_screen()
+            
+            if self.error_add != False or self.error_remove != False or self.error_search != False:
+                pygame.time.delay(500)
+                self.error_add, self.error_remove, self.error_search = False, False, False
 
             
     def check_input(self):
@@ -98,15 +102,26 @@ class LinkedList():
                 mouse_position = pygame.mouse.get_pos() 
                 if self.wm.collide_point("imgs/enviar.png",self.box_x+55, self.box_y+self.spacing+40, mouse_position):
                     if self.input_box1.text != '' and self.input_box2.text != '':
-                       self.error_add = False
-                       self.list.insert(int(self.input_box1.text), int(self.input_box2.text))
-
+                        if self.list.qtd_elements<10:
+                            if self.list.insert(int(self.input_box1.text), int(self.input_box2.text)) == True:
+                                self.error_add = False
+                            else:
+                                self.error_add = True
+                        else:
+                            self.error_add = True    
+                            
+                            
                     elif self.input_box1.text == '' or self.input_box2.text == '':
                         self.error_add = True
                 
                 elif self.wm.collide_point("imgs/enviar.png",self.box_x*2+85, self.box_y+self.spacing+40, mouse_position):
-                    if self.input_box3.text != '':
+                    if self.input_box3.text == '':
                         self.error_remove = True
+                    else:
+                        if self.list.remove(int(self.input_box3.text)) == None:
+                            self.error_remove = True
+                        else:
+                            self.error_remove = False
                         
                             
                 elif self.wm.collide_point("imgs/enviar.png",self.box_x*3+115, self.box_y+self.spacing+40, mouse_position):
