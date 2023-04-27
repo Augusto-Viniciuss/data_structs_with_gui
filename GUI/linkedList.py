@@ -112,6 +112,7 @@ class LinkedList():
                         else:                      #the position exists
                             self.fetch = ("position", int(self.input_box4.text), element)
                             self.error_search = False
+                            print(self.fetch)
                             return "busca"
                         
                     elif self.input_box5.text != '' and self.input_box4.text == '':    #if the search by element is filled
@@ -123,6 +124,7 @@ class LinkedList():
                         else:      
                             self.error_search = False
                             self.fetch = ("element", position)
+                            print(self.fetch)
                             return "busca"
             
         
