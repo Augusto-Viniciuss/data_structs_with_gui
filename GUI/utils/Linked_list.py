@@ -71,10 +71,11 @@ class Linked_list:
                 self.qtd_elements = self.qtd_elements - 1
                 
                 return removed_value
+            
             else:
                 aux_node = self.first_node
                 
-                for i in range(position - 1):
+                for i in range(position - 2):
                     aux_node = aux_node.get_next_node()
                     
                 removed_value = aux_node.get_next_node().get_value()

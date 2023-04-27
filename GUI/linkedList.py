@@ -100,6 +100,8 @@ class LinkedList():
             
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_position = pygame.mouse.get_pos() 
+                
+                #this is referent to the "send" button of "INSERIR" 
                 if self.wm.collide_point("imgs/enviar.png",self.box_x+55, self.box_y+self.spacing+40, mouse_position):
                     if self.input_box1.text != '' and self.input_box2.text != '':
                         if self.list.qtd_elements<10:
@@ -114,23 +116,26 @@ class LinkedList():
                     elif self.input_box1.text == '' or self.input_box2.text == '':
                         self.error_add = True
                 
+                #this is referent to the "send" button of "REMOVER" 
                 elif self.wm.collide_point("imgs/enviar.png",self.box_x*2+85, self.box_y+self.spacing+40, mouse_position):
-                    if self.input_box3.text == '':
+                
+                    if self.input_box3.text == '':      #if the user type nothing
                         self.error_remove = True
-                    else:
-                        if self.list.remove(int(self.input_box3.text)) == None:
+                    else:                                 
+                        if self.list.remove(int(self.input_box3.text)) == None:     #if the position to be removed is invalid
                             self.error_remove = True
-                        else:
+                        else:                               #if the remove was sucessfull 
                             self.error_remove = False
                         
-                            
+                #this is referent to the "send" button of "BUSCA"    
                 elif self.wm.collide_point("imgs/enviar.png",self.box_x*3+115, self.box_y+self.spacing+40, mouse_position):
                     element = ''
                     if self.input_box4.text != '' and self.input_box5.text != '':
                         self.error_search = True
                     elif self.input_box4.text != '' and self.input_box5.text == '':
                         element = self.list.get_element(int(self.input_box4.text))
-                        if  element == None:
+                        
+                        if  element == None:       
                             self.error_search = True
                             return None
                         else:
