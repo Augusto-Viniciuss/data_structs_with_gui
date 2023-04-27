@@ -32,7 +32,7 @@ class SequentialList():
         running = True
         while running: 
             self.flag_input = self.check_input()
-            
+
             if self.flag_input == "menu" or self.flag_input == "quit": 
                 return self.flag_input
             elif self.flag_input == "busca":
@@ -92,16 +92,16 @@ class SequentialList():
 
             self.print_static_imgs()      #printing the images on screen
 
-    
-            if self.error_add:         #error treatment
-                self.wm.draw_text("ERROR", 18, self.box_x+55, self.box_y-55, self.wm.RED)
+
+            if self.error_add:  #error treatment
+                self.wm.draw_text("Opa, erro ao inserir!", 16, 400, 150, self.wm.YELLOW)
             if self.error_remove:
-                self.wm.draw_text("ERROR", 18, self.box_x*2+85, self.box_y-55, self.wm.RED)
+                self.wm.draw_text("Opa, erro ao remover! Posição inválida.", 16, 400, 150, self.wm.YELLOW)
             if self.error_search:
-                self.wm.draw_text("ERROR", 18, self.box_x*3+115, self.box_y-55, self.wm.RED)
+                self.wm.draw_text("Opa, erro ao buscar! Posição ou elemento inválido.", 16, 400, 150, self.wm.YELLOW)
             
             
-            for i in range(10):
+            for i in range(10):         #plotting the array
                 if self.list.get_element(i+1) == None:
                     element = ''
                 else:
@@ -111,9 +111,9 @@ class SequentialList():
             
             self.wm.blit_screen()
             
-            if self.error_add != False or self.error_remove != False or self.error_search != False:
-                pygame.time.delay(500)
-                self.error_add, self.error_remove, self.error_search = False, False, False
+            if self.error_add != False or self.error_remove != False or self.error_search != False:      #if any variavle of error is setted
+                pygame.time.delay(1700)
+                self.error_add, self.error_remove, self.error_search = False, False, False               #gives a delay and restart the variables
         
     def check_input(self):
         

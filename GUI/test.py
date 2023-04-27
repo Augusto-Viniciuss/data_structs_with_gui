@@ -2,7 +2,7 @@ from utils.Linked_list import Linked_list
 from utils.Sequential_list import Sequential_list
 from utils.Doubly_linked_list import Doubly_linked_list
 
-list_i = Linked_list()
+list_i = Doubly_linked_list()
 
 list_i.insert(5,1) 
 list_i.insert(8,2) 
@@ -23,7 +23,7 @@ print("\nnew Size: " + str(list_i.get_size()))
 for i in range(1, list_i.get_size() + 1):
     print("Element " + str(list_i.get_element(i)))
    
-n = 6
+n = 1
 list_i.remove(n)
 
 print("\nremoved position " + str(n) + ". Size: "+ str(list_i.get_size()))
