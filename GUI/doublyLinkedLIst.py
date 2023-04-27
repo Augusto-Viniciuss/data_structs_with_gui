@@ -1,11 +1,13 @@
 import pygame
 from windowManager import WindowManager
 from inputBox import InputBox
+from utils.Doubly_linked_list import Doubly_linked_list
      
 class DoublyLinkedList():
     def __init__(self):
         self.wm = WindowManager()
         self.id = "Doubly Linked List"
+        self.list = Doubly_linked_list()
         self.mid_w, self.mid_h = self.wm.DISPLAY_W / 2, self.wm.DISPLAY_H / 2
         self.wm.blit_screen()
         self.flag_input = None
@@ -69,6 +71,10 @@ class DoublyLinkedList():
             self.input_box4.draw(self.wm.display)
             self.input_box5.draw(self.wm.display)
             
+            for i in range(self.list.qtd_elements):               #plotting the array
+                text = self.list.get_element(i+1)
+                self.create_node(self.node_positions[i][0], self.node_positions[i][1]-50, str(text) , i)
+            
             self.wm.blit_screen()
             
     def check_input(self):
@@ -89,18 +95,35 @@ class DoublyLinkedList():
             
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_position = pygame.mouse.get_pos() 
+                
+                #this is referent to the send button of "INSERIR" 
                 if self.wm.collide_point("imgs/enviar.png",self.box_x+55, self.box_y+self.spacing+40, mouse_position):
                     if self.input_box1.text != '' and self.input_box2.text != '':
-                       self.error_add = False
+                        
+                        if self.list.qtd_elements < 10:    #if the list didnt have 10 elem yet
+                            if self.list.insert(int(self.input_box1.text), int(self.input_box2.text)) == True:
+                                self.error_add = False
+                            else:
+                                self.error_add = True     
+                        else:
+                            self.error_add = True   
 
                     elif self.input_box1.text == '' or self.input_box2.text == '':
                         self.error_add = True
                 
+                #this is referent to the send button of "REMOVER" 
                 elif self.wm.collide_point("imgs/enviar.png",self.box_x*2+85, self.box_y+self.spacing+40, mouse_position):
-                    if self.input_box3.text != '':
+                    
+                    if self.input_box3.text == '':   #if the user didnt type anything
                         self.error_remove = True
+                    else:                                 
+                        if self.list.remove(int(self.input_box3.text)) == None:     #if the position to be removed is invalid
+                            self.error_remove = True
+                        else:                               #if the remove was sucessfull 
+                            self.error_remove = False
                         
-                            
+                        
+                #this is referent to the send button of "BUSCAR"
                 elif self.wm.collide_point("imgs/enviar.png",self.box_x*3+115, self.box_y+self.spacing+40, mouse_position):
                     
                     element = ''
