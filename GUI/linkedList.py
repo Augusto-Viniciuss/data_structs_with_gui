@@ -49,8 +49,8 @@ class LinkedList():
             self.wm.blit_screen()        #update the screen
             
             if self.error_add != False or self.error_remove != False or self.error_search != False:     #if exist some error
-                pygame.time.delay(2000)                                                                 #give some delay
-                self.error_add, self.error_remove, self.error_search = False, False, False              #reseting variables
+                pygame.time.delay(1700)                                                                 
+                self.error_add, self.error_remove, self.error_search = False, False, False              #give some delay and reset variables
             
     def check_input(self):
 
@@ -104,7 +104,7 @@ class LinkedList():
                     if self.input_box4.text != '' and self.input_box5.text != '':        #if the user typed in the two boxes
                         self.error_search = True
                         
-                    elif self.input_box4.text != '' and self.input_box5.text == '':    #if the search is by position
+                    elif self.input_box4.text != '' and self.input_box5.text == '':    #if the box by position is filled
                         element = self.list.get_element(int(self.input_box4.text))
                         if  element == None:       #the position does not exist
                             self.error_search = True
@@ -114,7 +114,7 @@ class LinkedList():
                             self.error_search = False
                             return "busca"
                         
-                    elif self.input_box5.text != '' and self.input_box4.text == '':    #if the search is by element
+                    elif self.input_box5.text != '' and self.input_box4.text == '':    #if the search by element is filled
                         position = self.list.get_position(int(self.input_box5.text))
                         
                         if  position == None:       #if the element does not exist
@@ -128,7 +128,8 @@ class LinkedList():
         
     def create_node(self, posx, posy, text, node_index):
         self.wm.draw_circle_with_text(posx, posy, 20, self.wm.WHITE, 1, str(text), 15)
-        if node_index < 9:
+
+        if node_index < self.list.qtd_elements-1:
             self.wm.draw_arrow(pygame.Vector2(posx + 20, posy), pygame.Vector2(posx + 40, posy), self.wm.WHITE, 2, 8, 6)
                   
     def print_static_imgs(self):
@@ -141,9 +142,9 @@ class LinkedList():
         self.wm.add_img("imgs/posicao.png", self.box_x-self.spacing, self.box_y+15)  #in the left of first line
         self.wm.add_img("imgs/elemento.png", self.box_x-self.spacing, self.box_y+50+15)  #in the left of second line
         
-        self.wm.add_img("imgs/enviar.png", self.box_x+55, self.box_y+self.spacing+40)
-        self.wm.add_img("imgs/enviar.png", self.box_x*2+85, self.box_y+self.spacing+40)
-        self.wm.add_img("imgs/enviar.png", self.box_x*3+115, self.box_y+self.spacing+40)
+        self.wm.add_img("imgs/enviar2.png", self.box_x+55, self.box_y+self.spacing+40)
+        self.wm.add_img("imgs/enviar2.png", self.box_x*2+85, self.box_y+self.spacing+40)
+        self.wm.add_img("imgs/enviar2.png", self.box_x*3+115, self.box_y+self.spacing+40)
 
         self.input_box1.draw(self.wm.display)
         self.input_box2.draw(self.wm.display)

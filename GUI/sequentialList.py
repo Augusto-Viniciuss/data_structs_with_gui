@@ -24,7 +24,7 @@ class SequentialList():
         self.input_box5 = InputBox(self.box_x*3+60, self.box_y+50)
         self.error_add, self.error_remove, self.error_search = False, False, False
         self.square_w,self.square_h = -20, 200
-        self.square_side, self.square_border = 70, 2
+        self.square_side, self.square_border = 70, 1
         self.square_number_w, self.square_number_h= self.square_w+self.square_side/2, self.square_h+self.square_side/2 
         
     def show_display(self):
@@ -32,6 +32,7 @@ class SequentialList():
         running = True
         while running: 
             self.flag_input = self.check_input()
+            
             if self.flag_input == "menu" or self.flag_input == "quit": 
                 return self.flag_input
             elif self.flag_input == "busca":
@@ -88,32 +89,17 @@ class SequentialList():
                         self.wm.blit_screen()
                         pygame.time.delay(700)
     
-            self.wm.display.fill(self.wm.BLACK)
-            
-            self.wm.add_img("imgs/ls.png", 400, 70)     #title
-            self.wm.add_img("imgs/inserir.png", self.box_x+55, self.box_y-30)  #in the top of first column
-            self.wm.add_img("imgs/remover.png", self.box_x*2+85, self.box_y-30)  #in the top of second column
-            self.wm.add_img("imgs/buscar.png", self.box_x*3+115, self.box_y-30)  #in the top of third column
-            self.wm.add_img("imgs/posicao.png", self.box_x-self.spacing, self.box_y+15)  #in the left of first line
-            self.wm.add_img("imgs/elemento.png", self.box_x-self.spacing, self.box_y+50+15)  #in the left of second line
 
-            
-            if self.error_add:
+            self.print_static_imgs()      #printing the images on screen
+
+    
+            if self.error_add:         #error treatment
                 self.wm.draw_text("ERROR", 18, self.box_x+55, self.box_y-55, self.wm.RED)
             if self.error_remove:
                 self.wm.draw_text("ERROR", 18, self.box_x*2+85, self.box_y-55, self.wm.RED)
             if self.error_search:
                 self.wm.draw_text("ERROR", 18, self.box_x*3+115, self.box_y-55, self.wm.RED)
-
-            self.wm.add_img("imgs/enviar.png", self.box_x+55, self.box_y+self.spacing+40)
-            self.wm.add_img("imgs/enviar.png", self.box_x*2+85, self.box_y+self.spacing+40)
-            self.wm.add_img("imgs/enviar.png", self.box_x*3+115, self.box_y+self.spacing+40)
-
-            self.input_box1.draw(self.wm.display)
-            self.input_box2.draw(self.wm.display)
-            self.input_box3.draw(self.wm.display)
-            self.input_box4.draw(self.wm.display)
-            self.input_box5.draw(self.wm.display)
+            
             
             for i in range(10):
                 if self.list.get_element(i+1) == None:
@@ -195,4 +181,24 @@ class SequentialList():
                             self.error_search = False
                             self.fetch = ("element", position)
                             return "busca"
-            
+
+
+    def print_static_imgs(self):
+    
+        self.wm.display.fill(self.wm.BLACK)
+        self.wm.add_img("imgs/ls.png", 400, 70)     #title
+        self.wm.add_img("imgs/inserir.png", self.box_x+55, self.box_y-30)  #in the top of first column
+        self.wm.add_img("imgs/remover.png", self.box_x*2+85, self.box_y-30)  #in the top of second column
+        self.wm.add_img("imgs/buscar.png", self.box_x*3+115, self.box_y-30)  #in the top of third column
+        self.wm.add_img("imgs/posicao.png", self.box_x-self.spacing, self.box_y+15)  #in the left of first line
+        self.wm.add_img("imgs/elemento.png", self.box_x-self.spacing, self.box_y+50+15)  #in the left of second line
+        
+        self.wm.add_img("imgs/enviar2.png", self.box_x+55, self.box_y+self.spacing+40)
+        self.wm.add_img("imgs/enviar2.png", self.box_x*2+85, self.box_y+self.spacing+40)
+        self.wm.add_img("imgs/enviar2.png", self.box_x*3+115, self.box_y+self.spacing+40)
+
+        self.input_box1.draw(self.wm.display)
+        self.input_box2.draw(self.wm.display)
+        self.input_box3.draw(self.wm.display)
+        self.input_box4.draw(self.wm.display)
+        self.input_box5.draw(self.wm.display)

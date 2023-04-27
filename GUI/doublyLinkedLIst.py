@@ -43,39 +43,27 @@ class DoublyLinkedList():
             #         pygame.time.delay(700)
 
             # elif (self.flag_input == "add"):
-                
-                    
-            self.wm.display.fill(self.wm.BLACK)
-            self.wm.add_img("imgs/lde.png", 400, 70)     #title
-            self.wm.add_img("imgs/inserir.png", self.box_x+55, self.box_y-30)  #in the top of first column
-            self.wm.add_img("imgs/remover.png", self.box_x*2+85, self.box_y-30)  #in the top of second column
-            self.wm.add_img("imgs/buscar.png", self.box_x*3+115, self.box_y-30)  #in the top of third column
-            self.wm.add_img("imgs/posicao.png", self.box_x-self.spacing, self.box_y+15)  #in the left of first line
-            self.wm.add_img("imgs/elemento.png", self.box_x-self.spacing, self.box_y+50+15)  #in the left of second line
 
+            self.print_static_imgs()      #printing the static images
             
-            if self.error_add:
-                self.wm.draw_text("ERROR", 18, self.box_x+55, self.box_y-55, self.wm.RED)
+            if self.error_add:  #error treatment
+                self.wm.draw_text("Opa, erro ao inserir!", 16, 400, 150, self.wm.YELLOW)
             if self.error_remove:
-                self.wm.draw_text("ERROR", 18, self.box_x*2+85, self.box_y-55, self.wm.RED)
+                self.wm.draw_text("Opa, erro ao remover! Posição inválida.", 16, 400, 150, self.wm.YELLOW)
             if self.error_search:
-                self.wm.draw_text("ERROR", 18, self.box_x*3+115, self.box_y-55, self.wm.RED)
+                self.wm.draw_text("Opa, erro ao buscar! Posição ou elemento inválido.", 16, 400, 150, self.wm.YELLOW)
 
-            self.wm.add_img("imgs/enviar.png", self.box_x+55, self.box_y+self.spacing+40)
-            self.wm.add_img("imgs/enviar.png", self.box_x*2+85, self.box_y+self.spacing+40)
-            self.wm.add_img("imgs/enviar.png", self.box_x*3+115, self.box_y+self.spacing+40)
-
-            self.input_box1.draw(self.wm.display)
-            self.input_box2.draw(self.wm.display)
-            self.input_box3.draw(self.wm.display)
-            self.input_box4.draw(self.wm.display)
-            self.input_box5.draw(self.wm.display)
-            
-            for i in range(self.list.qtd_elements):               #plotting the array
+    
+            for i in range(self.list.qtd_elements):               #plotting the double linked list 
                 text = self.list.get_element(i+1)
                 self.create_node(self.node_positions[i][0], self.node_positions[i][1]-50, str(text) , i)
             
             self.wm.blit_screen()
+
+            if self.error_add != False or self.error_remove != False or self.error_search != False:     #if exist some error
+                pygame.time.delay(1700)                                                                 
+                self.error_add, self.error_remove, self.error_search = False, False, False              #give some delay and reset variables
+
             
     def check_input(self):
         
@@ -150,6 +138,27 @@ class DoublyLinkedList():
         
     def create_node(self, posx, posy, text, node_index):
         self.wm.draw_circle_with_text(posx, posy, 20, self.wm.WHITE, 1, str(text), 15)
-        if node_index < 9:
+        if node_index < self.list.qtd_elements-1:
             self.wm.draw_arrow(pygame.Vector2(posx + 20, posy + 8), pygame.Vector2(posx + 40, posy + 8), self.wm.WHITE, 2, 8, 6)
             self.wm.draw_arrow(pygame.Vector2(posx + 40, posy - 8), pygame.Vector2(posx + 20, posy - 8), self.wm.WHITE, 2, 8, 6)
+
+
+    def print_static_imgs(self):
+                  
+        self.wm.display.fill(self.wm.BLACK)
+        self.wm.add_img("imgs/lde.png", 400, 70)     #title
+        self.wm.add_img("imgs/inserir.png", self.box_x+55, self.box_y-30)  #in the top of first column
+        self.wm.add_img("imgs/remover.png", self.box_x*2+85, self.box_y-30)  #in the top of second column
+        self.wm.add_img("imgs/buscar.png", self.box_x*3+115, self.box_y-30)  #in the top of third column
+        self.wm.add_img("imgs/posicao.png", self.box_x-self.spacing, self.box_y+15)  #in the left of first line
+        self.wm.add_img("imgs/elemento.png", self.box_x-self.spacing, self.box_y+50+15)  #in the left of second line
+
+        self.wm.add_img("imgs/enviar2.png", self.box_x+55, self.box_y+self.spacing+40)
+        self.wm.add_img("imgs/enviar2.png", self.box_x*2+85, self.box_y+self.spacing+40)
+        self.wm.add_img("imgs/enviar2.png", self.box_x*3+115, self.box_y+self.spacing+40)
+
+        self.input_box1.draw(self.wm.display)
+        self.input_box2.draw(self.wm.display)
+        self.input_box3.draw(self.wm.display)
+        self.input_box4.draw(self.wm.display)
+        self.input_box5.draw(self.wm.display)
