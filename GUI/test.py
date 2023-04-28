@@ -23,7 +23,7 @@ print("\nnew Size: " + str(list_i.get_size()))
 for i in range(1, list_i.get_size() + 1):
     print("Element " + str(list_i.get_element(i)))
    
-n = 1
+n = 5
 list_i.remove(n)
 
 print("\nremoved position " + str(n) + ". Size: "+ str(list_i.get_size()))

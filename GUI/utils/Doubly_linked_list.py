@@ -112,12 +112,17 @@ class Doubly_linked_list:
                 if position > (self.qtd_elements / 2):
                     aux_node = self.last_node
 
-                    for i in range(self.qtd_elements, (position - 1), -1):
-                        aux_node = aux_node.get_next_node()
+                    for i in range(self.qtd_elements, (position-1), -1):
+                        aux_node = aux_node.get_previous_node()
                     
-                    removed_value = aux_node.get_next_node().get_value()
-                    aux_node.set_next_node(aux_node.get_next_node().get_next_node())
-                    aux_node.get_next_node().set_previous_node(aux_node)
+                    removed_node = aux_node.get_next_node()
+                    
+                    aux_node.set_next_node(removed_node.get_next_node())
+                    removed_node.get_next_node().set_previous_node(aux_node)
+                    #aux_node.set_next_node(aux_node.get_next_node().get_next_node())
+                    #aux_node.get_next_node().set_previous_node(aux_node)
+                    self.qtd_elements = self.qtd_elements - 1
+                    return removed_node.get_value()
                 else: 
                     aux_node = self.first_node
 
@@ -127,5 +132,8 @@ class Doubly_linked_list:
                     removed_value = aux_node.get_next_node().get_value()
                     aux_node.set_next_node(aux_node.get_next_node().get_next_node())
                     aux_node.get_next_node().set_previous_node(aux_node)
+
+                    self.qtd_elements = self.qtd_elements - 1
+                    return removed_value
 
                 
