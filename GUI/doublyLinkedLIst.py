@@ -24,7 +24,9 @@ class DoublyLinkedList():
         self.input_box5 = InputBox(self.box_x*3+60, self.box_y+50)
         self.error_add, self.error_remove, self.error_search = False, False, False
         self.node_positions = [[self.mid_w - 280, self.mid_h], [self.mid_w - 220, self.mid_h], [self.mid_w - 160, self.mid_h], [self.mid_w - 100, self.mid_h], [self.mid_w - 40, self.mid_h], [self.mid_w + 20, self.mid_h], [self.mid_w + 80, self.mid_h], [self.mid_w + 140, self.mid_h], [self.mid_w + 200, self.mid_h], [self.mid_w + 260, self.mid_h]]
-
+        self.square_w,self.square_h = 59.8, 250
+        self.square_side, self.square_border = 60, 1
+        self.square_number_w, self.square_number_h= self.square_w+self.square_side/2, self.square_h+self.square_side/2
     
     def show_display(self):
         
@@ -43,7 +45,38 @@ class DoublyLinkedList():
             #         pygame.time.delay(700)
 
             # elif (self.flag_input == "add"):
-
+            elif self.flag_input == "busca":
+                if(self.fetch[0] == "element"):
+                    for x in range(self.fetch[1]):
+                        if(x == 0 and x != self.fetch[1] - 1):
+                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border , self.square_h, 20, self.wm.YELLOW, self.square_border)
+                        elif(x != self.fetch[1] - 1):
+                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border , self.square_h, 20, self.wm.YELLOW, self.square_border)
+                            self.wm.draw_circle(self.square_w+(x)*self.square_side+self.square_border , self.square_h, 20, self.wm.WHITE, self.square_border)
+                        elif(x == 0 and x == self.fetch[1] - 1):
+                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border , self.square_h, 20, self.wm.BLUE, self.square_border)
+                        elif(x == self.fetch[1] - 1):
+                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border , self.square_h, 20, self.wm.BLUE, self.square_border)
+                            self.wm.draw_circle(self.square_w+(x)*self.square_side+self.square_border , self.square_h, 20, self.wm.WHITE, self.square_border)
+                        
+                        self.wm.blit_screen()
+                        pygame.time.delay(700)
+                        
+                elif(self.fetch[0] == "position"):
+                    for x in range(self.fetch[1]):
+                        if(x == 0 and x != self.fetch[1] - 1):
+                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border , self.square_h, 20, self.wm.YELLOW, self.square_border)
+                        elif(x != self.fetch[1] - 1):
+                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border , self.square_h, 20, self.wm.YELLOW, self.square_border)
+                            self.wm.draw_circle(self.square_w+(x)*self.square_side+self.square_border , self.square_h, 20, self.wm.WHITE, self.square_border)
+                        elif(x == 0 and x == self.fetch[1] - 1):
+                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border , self.square_h, 20, self.wm.BLUE, self.square_border)
+                        elif(x == self.fetch[1] - 1):
+                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border , self.square_h, 20, self.wm.BLUE, self.square_border)
+                            self.wm.draw_circle(self.square_w+(x)*self.square_side+self.square_border , self.square_h, 20, self.wm.WHITE, self.square_border)
+                        
+                        self.wm.blit_screen()
+                        pygame.time.delay(700)
             self.print_static_imgs()      #printing the static images
             
             if self.error_add:  #error treatment
