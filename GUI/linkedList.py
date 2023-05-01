@@ -6,15 +6,15 @@ from utils.Linked_list import Linked_list
 class LinkedList():
     def __init__(self):
         self.wm = WindowManager()
-        self.id = "Linked List"
         self.list = Linked_list()
-        self.mid_w, self.mid_h = self.wm.DISPLAY_W /2 , self.wm.DISPLAY_H / 2
         self.box_x, self.box_y = 170, 420      #need to define as parameter the x and y of the firstbox
         self.spacing = 75
-        self.mid_w, self.mid_h = self.wm.DISPLAY_W / 2, self.wm.DISPLAY_H / 2
+        self.id = "Linked List"
+        self.mid_w, self.mid_h = self.wm.DISPLAY_W /2 , self.wm.DISPLAY_H / 2
         self.wm.blit_screen()
         self.fetch = None
         self.add = None
+        self.remove = None
         self.flag_input = None
         self.input_box1 = InputBox(self.box_x, self.box_y+50)       #box inserir-elemento
         self.input_box2= InputBox(self.box_x, self.box_y)          
@@ -23,7 +23,10 @@ class LinkedList():
         self.input_box5 = InputBox(self.box_x*3+60, self.box_y+50)
         self.error_add, self.error_remove, self.error_search = False, False, False
         self.node_positions = [[self.mid_w - 280, self.mid_h], [self.mid_w - 220, self.mid_h], [self.mid_w - 160, self.mid_h], [self.mid_w - 100, self.mid_h], [self.mid_w - 40, self.mid_h], [self.mid_w + 20, self.mid_h], [self.mid_w + 80, self.mid_h], [self.mid_w + 140, self.mid_h], [self.mid_w + 200, self.mid_h], [self.mid_w + 260, self.mid_h]]
-    
+        self.square_w,self.square_h = 59.8, 250
+        self.square_side, self.square_border = 60, 1
+        self.square_number_w, self.square_number_h= self.square_w+self.square_side/2, self.square_h+self.square_side/2
+
     def show_display(self):
         
         running = True
@@ -32,7 +35,40 @@ class LinkedList():
 
             if self.flag_input == "menu" or self.flag_input == "quit": 
                 return self.flag_input
-
+            
+            elif self.flag_input == "busca":
+                if(self.fetch[0] == "element"):
+                    for x in range(self.fetch[1]):
+                        if(x == 0 and x != self.fetch[1] - 1):
+                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border, self.square_h, 20, self.wm.YELLOW, self.square_border)
+                        elif(x != self.fetch[1] - 1):
+                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border, self.square_h, 20, self.wm.YELLOW, self.square_border)
+                            self.wm.draw_circle(self.square_w+(x)*self.square_side+self.square_border, self.square_h, 20, self.wm.WHITE, self.square_border)
+                        elif(x == 0 and x == self.fetch[1] - 1):
+                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border, self.square_h, 20, self.wm.BLUE, self.square_border)
+                        elif(x == self.fetch[1] - 1):
+                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border, self.square_h, 20, self.wm.BLUE, self.square_border)
+                            self.wm.draw_circle(self.square_w+(x)*self.square_side+self.square_border, self.square_h, 20, self.wm.WHITE, self.square_border)
+                        
+                        self.wm.blit_screen()
+                        pygame.time.delay(700)
+                        
+                elif(self.fetch[0] == "position"):
+                    for x in range(self.fetch[1]):
+                        if(x == 0 and x != self.fetch[1] - 1):
+                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border, self.square_h, 20, self.wm.YELLOW, self.square_border)
+                        elif(x != self.fetch[1] - 1):
+                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border, self.square_h, 20, self.wm.YELLOW, self.square_border)
+                            self.wm.draw_circle(self.square_w+(x)*self.square_side+self.square_border, self.square_h, 20, self.wm.WHITE, self.square_border)
+                        elif(x == 0 and x == self.fetch[1] - 1):
+                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border, self.square_h, 20, self.wm.BLUE, self.square_border)
+                        elif(x == self.fetch[1] - 1):
+                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border, self.square_h, 20, self.wm.BLUE, self.square_border)
+                            self.wm.draw_circle(self.square_w+(x)*self.square_side+self.square_border, self.square_h, 20, self.wm.WHITE, self.square_border)
+                        
+                        self.wm.blit_screen()
+                        pygame.time.delay(700)   
+                        
             self.print_static_imgs()     #function where the images and the input boxes are printed
             
             if self.error_add:  #error treatment
