@@ -43,7 +43,6 @@ class LinkedList():
                             if(x == 0): 
                                 self.wm.draw_circle(self.node_positions[0][0], self.node_positions[x - 1][1]-50, 24, self.wm.BLUE, self.circle_border)
                             else: 
-                                print("entrou")
                                 self.wm.draw_circle(self.node_positions[x - 1][0], self.node_positions[x - 1][1]-50, 24, self.wm.BLUE, self.circle_border)
                         else:
                             if(x == 0): 
@@ -257,7 +256,6 @@ class LinkedList():
                         else:                      #the position exists
                             self.fetch = ("position", int(self.input_box4.text), element)
                             self.error_search = False
-                            print(self.fetch)
                             return "busca"
                         
                     elif self.input_box5.text != '' and self.input_box4.text == '':    #if the search by element is filled
@@ -269,7 +267,6 @@ class LinkedList():
                         else:      
                             self.error_search = False
                             self.fetch = ("element", position)
-                            print(self.fetch)
                             return "busca"
             
         
