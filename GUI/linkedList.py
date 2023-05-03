@@ -103,9 +103,6 @@ class LinkedList():
                         self.wm.draw_circle_with_text(self.node_positions[self.add[0] - 1][0], self.node_positions[self.add[0] - 1][1], 24, self.wm.PURPLE, 1, str(self.list.get_element(self.add[0])), 20)
                         self.wm.blit_screen()
                         pygame.time.delay(500)
-                        self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.add[0] - 1][0] + 24, self.node_positions[self.add[0] - 1][1]), pygame.Vector2(self.node_positions[self.add[0]][0], self.node_positions[self.add[0]][1] - 26), self.wm.YELLOW, 4, 10, 8)
-                        self.wm.blit_screen()
-                        pygame.time.delay(500)
                         self.wm.draw_rect(self.node_positions[self.add[0] - 1][0] - 48, self.node_positions[self.add[0] - 1][1] - 60, self.square_side + 36, self.square_side - 40, self.wm.BLACK)
                         self.wm.blit_screen()
                         pygame.time.delay(500)
@@ -172,11 +169,11 @@ class LinkedList():
             self.print_static_imgs()     #function where the images and the input boxes are printed
             
             if self.error_add:  #error treatment
-                self.wm.draw_text("Opa, erro ao inserir!", 16, 400, 150, self.wm.YELLOW)
+                self.wm.draw_text("Erro ao inserir!", 16, 400, 150, self.wm.YELLOW)
             if self.error_remove:
-                self.wm.draw_text("Opa, erro ao remover! Posição inválida.", 16, 400, 150, self.wm.YELLOW)
+                self.wm.draw_text("Erro ao remover! Posição inválida.", 16, 400, 150, self.wm.YELLOW)
             if self.error_search:
-                self.wm.draw_text("Opa, erro ao buscar! Posição ou elemento inválido.", 16, 400, 150, self.wm.YELLOW)
+                self.wm.draw_text("Erro ao buscar! Posição ou elemento inválido.", 16, 400, 150, self.wm.YELLOW)
 
             for i in range(self.list.qtd_elements):               #plotting the array
                 text = self.list.get_element(i+1)

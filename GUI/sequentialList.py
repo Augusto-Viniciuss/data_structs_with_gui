@@ -94,11 +94,11 @@ class SequentialList():
 
 
             if self.error_add:  #error treatment
-                self.wm.draw_text("Opa, erro ao inserir!", 16, 400, 150, self.wm.YELLOW)
+                self.wm.draw_text("Erro ao inserir!", 16, 400, 150, self.wm.YELLOW)
             if self.error_remove:
-                self.wm.draw_text("Opa, erro ao remover! Posição inválida.", 16, 400, 150, self.wm.YELLOW)
+                self.wm.draw_text("Erro ao remover! Posição inválida.", 16, 400, 150, self.wm.YELLOW)
             if self.error_search:
-                self.wm.draw_text("Opa, erro ao buscar! Posição ou elemento inválido.", 16, 400, 150, self.wm.YELLOW)
+                self.wm.draw_text("Erro ao buscar! Posição ou elemento inválido.", 16, 400, 150, self.wm.YELLOW)
             
             
             for i in range(10):         #plotting the array
