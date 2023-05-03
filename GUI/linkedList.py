@@ -35,35 +35,37 @@ class LinkedList():
                 return self.flag_input
             elif self.flag_input == "busca":
                 if(self.fetch[0] == "element"):
-                    for x in range(self.fetch[1]):
-                        if(x == 0 and x != self.fetch[1] - 1):
-                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border, self.square_h, 20, self.wm.YELLOW, self.square_border)
-                        elif(x != self.fetch[1] - 1):
-                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border, self.square_h, 20, self.wm.YELLOW, self.square_border)
-                            self.wm.draw_circle(self.square_w+(x)*self.square_side+self.square_border, self.square_h, 20, self.wm.WHITE, self.square_border)
-                        elif(x == 0 and x == self.fetch[1] - 1):
-                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border, self.square_h, 20, self.wm.BLUE, self.square_border)
-                        elif(x == self.fetch[1] - 1):
-                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border, self.square_h, 20, self.wm.BLUE, self.square_border)
-                            self.wm.draw_circle(self.square_w+(x)*self.square_side+self.square_border, self.square_h, 20, self.wm.WHITE, self.square_border)
+                    for x in range(self.fetch[1]+1):
+                            
+                        if(x == self.fetch[1]):
+                            if(x == 0): 
+                                self.wm.draw_circle(self.node_positions[0][0], self.node_positions[x - 1][1]-50, 24, self.wm.BLUE, self.circle_border)
+                            else: 
+                                self.wm.draw_circle(self.node_positions[x - 1][0], self.node_positions[x - 1][1]-50, 24, self.wm.BLUE, self.circle_border)
+                        else:
+                            if(x == 0): 
+                                self.wm.draw_circle(self.node_positions[0][0], self.node_positions[x - 1][1]-50, 24, self.wm.YELLOW, self.circle_border)
+                            else:
+                                self.wm.draw_circle(self.node_positions[x-1][0], self.node_positions[x - 1][1]-50, 24, self.wm.YELLOW, self.circle_border)
                         
-                        self.wm.blit_screen()
-                        pygame.time.delay(700)     
+                        self.wm.blit_screen()   
+                        pygame.time.delay(500)     
                 elif(self.fetch[0] == "position"):
-                    for x in range(self.fetch[1]):
-                        if(x == 0 and x != self.fetch[1] - 1):
-                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border, self.square_h, 20, self.wm.YELLOW, self.square_border)
-                        elif(x != self.fetch[1] - 1):
-                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border, self.square_h, 20, self.wm.YELLOW, self.square_border)
-                            self.wm.draw_circle(self.square_w+(x)*self.square_side+self.square_border, self.square_h, 20, self.wm.WHITE, self.square_border)
-                        elif(x == 0 and x == self.fetch[1] - 1):
-                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border, self.square_h, 20, self.wm.BLUE, self.square_border)
-                        elif(x == self.fetch[1] - 1):
-                            self.wm.draw_circle(self.square_w+(x+1)*self.square_side+self.square_border, self.square_h, 20, self.wm.BLUE, self.square_border)
-                            self.wm.draw_circle(self.square_w+(x)*self.square_side+self.square_border, self.square_h, 20, self.wm.WHITE, self.square_border)
+                    for x in range(self.fetch[1]+1):
+                        
+                        if(x == self.fetch[1]):
+                            if(x == 0): 
+                                self.wm.draw_circle(self.node_positions[0][0], self.node_positions[x - 1][1]-50, 24, self.wm.BLUE, self.circle_border)
+                            else: 
+                                self.wm.draw_circle(self.node_positions[x - 1][0], self.node_positions[x - 1][1]-50, 24, self.wm.BLUE, self.circle_border)
+                        else:
+                            if(x == 0): 
+                                self.wm.draw_circle(self.node_positions[0][0], self.node_positions[x - 1][1]-50, 24, self.wm.YELLOW, self.circle_border)
+                            else:
+                                self.wm.draw_circle(self.node_positions[x-1][0], self.node_positions[x - 1][1]-50, 24, self.wm.YELLOW, self.circle_border)
                         
                         self.wm.blit_screen()
-                        pygame.time.delay(700)
+                        pygame.time.delay(700)            
             elif(self.flag_input == "add"):
                 if(self.add[0] == 1 and self.list.get_size() == 1):
                     self.wm.draw_circle_with_text(self.node_positions[self.add[0] - 1][0], self.node_positions[self.add[0] - 1][1] - 50, 24, self.wm.PURPLE, 1, str(self.list.get_element(self.add[0])), 20)
