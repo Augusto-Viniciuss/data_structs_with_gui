@@ -35,15 +35,6 @@ class Sequential_list:
                     return i + 1
                 
             return None
-
-    #def get_position(self, value, offset):
-     #   if self.is_empty() or offset > self.qtd_elements:
-      # else:
-       #     for i in range((offset - 1), self.qtd_elements):
-        #        if value == self.list[i]:
-           #         return i + 1
-         #       
-          #  return None
     
     def insert(self, value, position):
         if position <= 0 or position > (self.qtd_elements + 1) or self.is_full():
