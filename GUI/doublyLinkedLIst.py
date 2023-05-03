@@ -89,12 +89,13 @@ class DoublyLinkedList():
                 else:
                     for x in range(self.list.get_size(), self.add[0], -1):
                         if(x == self.list.get_size()):
+                            print("çalsdkjf")
                             self.wm.draw_rect(self.node_positions[x - 2][0] - 40, self.node_positions[x - 2][1] - 100, self.square_side + 40, self.square_side + 40, self.wm.BLACK)
                             self.wm.draw_circle_with_text(self.node_positions[x - 1][0], self.node_positions[x - 1][1] - 50, 24, self.wm.PURPLE, 1, str(self.list.get_element(x)), 20)
                             if(x - 1 != 1):
                                 if(x - 1 == self.add[0]):
-                                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[x - 1][0] - 25, self.node_positions[x - 1][1] - 62), pygame.Vector2(self.node_positions[x - 2][0] - 24, self.node_positions[x - 2][1] - 62), self.wm.YELLOW, 4, 10, 8)
-                                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[x - 2][0] + 24, self.node_positions[x - 2][1] - 38), pygame.Vector2(self.node_positions[x - 1][0] - 25, self.node_positions[x - 1][1] - 38), self.wm.YELLOW, 4, 10, 8)
+                                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[x - 1][0] - 25, self.node_positions[x - 1][1] - 62), pygame.Vector2(self.node_positions[x - 3][0] + 24, self.node_positions[x - 3][1] - 62), self.wm.YELLOW, 4, 10, 8)
+                                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[x - 3][0] + 24, self.node_positions[x - 3][1] - 38), pygame.Vector2(self.node_positions[x - 1][0] - 25, self.node_positions[x - 1][1] - 38), self.wm.YELLOW, 4, 10, 8)
                                 else:
                                     self.wm.draw_arrow(pygame.Vector2(self.node_positions[x - 1][0] - 25, self.node_positions[x - 1][1] - 62), pygame.Vector2(self.node_positions[x - 3][0] + 24, self.node_positions[x - 3][1] - 62), self.wm.WHITE, 4, 10, 8)
                                     self.wm.draw_arrow(pygame.Vector2(self.node_positions[x - 3][0] + 24, self.node_positions[x - 3][1] - 38), pygame.Vector2(self.node_positions[x - 1][0] - 25, self.node_positions[x - 1][1] - 38), self.wm.WHITE, 4, 10, 8)                            
@@ -109,8 +110,8 @@ class DoublyLinkedList():
                             self.wm.draw_arrow(pygame.Vector2(self.node_positions[x - 1][0] + 24, self.node_positions[x - 1][1] - 38), pygame.Vector2(self.node_positions[x][0] - 25, self.node_positions[x][1] - 38), self.wm.WHITE, 4, 10, 8)                            
                             if(x - 1 != 1):
                                 if(x - 1 == self.add[0]):
-                                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[x - 1][0] - 25, self.node_positions[x - 1][1] - 62), pygame.Vector2(self.node_positions[x - 2][0] - 24, self.node_positions[x - 2][1] - 62), self.wm.YELLOW, 4, 10, 8)
-                                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[x - 2][0] + 24, self.node_positions[x - 2][1] - 38), pygame.Vector2(self.node_positions[x - 1][0] - 25, self.node_positions[x - 1][1] - 38), self.wm.YELLOW, 4, 10, 8)
+                                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[x - 1][0] - 25, self.node_positions[x - 1][1] - 62), pygame.Vector2(self.node_positions[x - 3][0] + 24, self.node_positions[x - 3][1] - 62), self.wm.YELLOW, 4, 10, 8)
+                                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[x - 3][0] + 24, self.node_positions[x - 3][1] - 38), pygame.Vector2(self.node_positions[x - 1][0] - 25, self.node_positions[x - 1][1] - 38), self.wm.YELLOW, 4, 10, 8)
                                 else:
                                     self.wm.draw_arrow(pygame.Vector2(self.node_positions[x - 1][0] - 25, self.node_positions[x - 1][1] - 62), pygame.Vector2(self.node_positions[x - 3][0] + 24, self.node_positions[x - 3][1] - 62), self.wm.WHITE, 4, 10, 8)
                                     self.wm.draw_arrow(pygame.Vector2(self.node_positions[x - 3][0] + 24, self.node_positions[x - 3][1] - 38), pygame.Vector2(self.node_positions[x - 1][0] - 25, self.node_positions[x - 1][1] - 38), self.wm.WHITE, 4, 10, 8)                            
@@ -118,16 +119,21 @@ class DoublyLinkedList():
                             pygame.time.delay(700)
                     
                     if(self.add[0] != 1):
+                        print("pedro")
                         self.wm.draw_circle_with_text(self.node_positions[self.add[0] - 1][0], self.node_positions[self.add[0] - 1][1], 24, self.wm.PURPLE, 1, str(self.list.get_element(self.add[0])), 20)
                         self.wm.blit_screen()
                         pygame.time.delay(500)
-                        self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.add[0] - 1][0] + 24, self.node_positions[self.add[0] - 1][1]), pygame.Vector2(self.node_positions[self.add[0]][0], self.node_positions[self.add[0]][1] - 26), self.wm.YELLOW, 4, 10, 8)
+                        self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.add[0] - 1][0] + 24, self.node_positions[self.add[0] - 1][1] + 12), pygame.Vector2(self.node_positions[self.add[0]][0] + 12, self.node_positions[self.add[0]][1] - 26), self.wm.YELLOW, 4, 10, 8)
                         self.wm.blit_screen()
                         pygame.time.delay(500)
-                        self.wm.draw_rect(self.node_positions[self.add[0] - 1][0] - 48, self.node_positions[self.add[0] - 1][1] - 60, self.square_side + 36, self.square_side - 40, self.wm.BLACK)
+                        self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.add[0] - 1][0] - 24, self.node_positions[self.add[0] - 1][1] + 12), pygame.Vector2(self.node_positions[self.add[0] - 2][0] - 12, self.node_positions[self.add[0] - 2][1] - 26), self.wm.YELLOW, 4, 10, 8)
                         self.wm.blit_screen()
                         pygame.time.delay(500)
-                        self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.add[0] - 2][0], self.node_positions[self.add[0] - 2][1]- 25), pygame.Vector2(self.node_positions[self.add[0] - 1][0] - 24, self.node_positions[self.add[0] - 1][1]), self.wm.YELLOW, 4, 10, 8)
+                        self.wm.draw_rect(self.node_positions[self.add[0] - 1][0] - 48, self.node_positions[self.add[0] - 1][1] - 80, self.square_side + 36, self.square_side - 10, self.wm.BLACK)
+                        self.wm.blit_screen()
+                        pygame.time.delay(500)
+                        self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.add[0]][0] - 12, self.node_positions[self.add[0]][1] - 26), pygame.Vector2(self.node_positions[self.add[0] - 1][0] + 26, self.node_positions[self.add[0] - 1][1] - 12), self.wm.YELLOW, 4, 10, 8)
+                        self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.add[0] - 2][0] + 12, self.node_positions[self.add[0] - 1][1] - 26), pygame.Vector2(self.node_positions[self.add[0] - 1][0] - 24, self.node_positions[self.add[0] - 1][1] - 12), self.wm.YELLOW, 4, 10, 8)
                         self.wm.blit_screen()
                         pygame.time.delay(700)
                     else:
@@ -138,63 +144,71 @@ class DoublyLinkedList():
                         pygame.time.delay(700)
             elif(self.flag_input == "remove"):
                 if(self.remove[0] == 1 and self.list.get_size() + 1 > 1):
-                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0] - 1][0] + 24, self.node_positions[self.remove[0] - 1][1] - 50), pygame.Vector2(self.node_positions[self.remove[0]][0] - 24, self.node_positions[self.remove[0]][1] - 50), self.wm.RED, 4, 10, 8)                   
+                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0]][0] - 25, self.node_positions[self.remove[0]][1] - 62), pygame.Vector2(self.node_positions[self.remove[0] - 1][0] + 24, self.node_positions[self.remove[0] - 1][1] - 62), self.wm.RED, 4, 10, 8)
+                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0] - 1][0] + 24, self.node_positions[self.remove[0] - 1][1] - 38), pygame.Vector2(self.node_positions[self.remove[0]][0] - 25, self.node_positions[self.remove[0]][1] - 38), self.wm.RED, 4, 10, 8)
+                    # self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0] - 1][0] + 24, self.node_positions[self.remove[0] - 1][1] - 50), pygame.Vector2(self.node_positions[self.remove[0]][0] - 24, self.node_positions[self.remove[0]][1] - 50), self.wm.RED, 4, 10, 8)                   
                     self.wm.blit_screen()
                     pygame.time.delay(700)
                     self.wm.draw_rect(self.node_positions[self.remove[0] - 1][0] - 48, self.node_positions[self.remove[0] - 1][1] - 100, self.square_side + 36, self.square_side + 40, self.wm.BLACK)
                     self.wm.blit_screen()
                     pygame.time.delay(700)
                 elif(self.remove[0] == self.list.get_size() + 1 and self.list.get_size() + 1 > 1):
-                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0] - 2][0] + 24, self.node_positions[self.remove[0] - 2][1] - 50), pygame.Vector2(self.node_positions[self.remove[0] - 1][0] - 24, self.node_positions[self.remove[0] - 1][1] - 50), self.wm.RED, 4, 10, 8)                   
+                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0] - 1][0] - 25, self.node_positions[self.remove[0] - 1][1] - 62), pygame.Vector2(self.node_positions[self.remove[0] - 2][0] + 24, self.node_positions[self.remove[0] - 2][1] - 62), self.wm.RED, 4, 10, 8)
+                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0] - 2][0] + 24, self.node_positions[self.remove[0] - 2][1] - 38), pygame.Vector2(self.node_positions[self.remove[0] - 1][0] - 25, self.node_positions[self.remove[0] - 1][1] - 38), self.wm.RED, 4, 10, 8)                    
                     self.wm.blit_screen()
                     pygame.time.delay(700)
                 elif(self.remove[0] != 1):
-                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0] - 2][0] + 24, self.node_positions[self.remove[0] - 2][1] - 50), pygame.Vector2(self.node_positions[self.remove[0] - 1][0] - 24, self.node_positions[self.remove[0] - 1][1] - 50), self.wm.RED, 4, 10, 8)                   
-                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0] - 1][0] + 24, self.node_positions[self.remove[0] - 1][1] - 50), pygame.Vector2(self.node_positions[self.remove[0]][0] - 24, self.node_positions[self.remove[0]][1] - 50), self.wm.RED, 4, 10, 8)                
+                    # self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0] - 2][0] + 24, self.node_positions[self.remove[0] - 2][1] - 50), pygame.Vector2(self.node_positions[self.remove[0] - 1][0] - 24, self.node_positions[self.remove[0] - 1][1] - 50), self.wm.RED, 4, 10, 8)                   
+                    # self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0] - 1][0] + 24, self.node_positions[self.remove[0] - 1][1] - 50), pygame.Vector2(self.node_positions[self.remove[0]][0] - 24, self.node_positions[self.remove[0]][1] - 50), self.wm.RED, 4, 10, 8)                
+                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0]][0] - 25, self.node_positions[self.remove[0]][1] - 62), pygame.Vector2(self.node_positions[self.remove[0] - 1][0] + 24, self.node_positions[self.remove[0] - 1][1] - 62), self.wm.RED, 4, 10, 8)
+                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0] - 1][0] + 24, self.node_positions[self.remove[0] - 1][1] - 38), pygame.Vector2(self.node_positions[self.remove[0]][0] - 25, self.node_positions[self.remove[0]][1] - 38), self.wm.RED, 4, 10, 8)
+                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0] - 1][0] - 25, self.node_positions[self.remove[0] - 1][1] - 62), pygame.Vector2(self.node_positions[self.remove[0] - 2][0] + 24, self.node_positions[self.remove[0] - 2][1] - 62), self.wm.RED, 4, 10, 8)
+                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0] - 2][0] + 24, self.node_positions[self.remove[0] - 2][1] - 38), pygame.Vector2(self.node_positions[self.remove[0] - 1][0] - 25, self.node_positions[self.remove[0] - 1][1] - 38), self.wm.RED, 4, 10, 8)        
                     self.wm.blit_screen()
                     pygame.time.delay(500)
                     self.wm.draw_rect(self.node_positions[self.remove[0] - 1][0] - 48, self.node_positions[self.remove[0] - 1][1] - 100, self.square_side + 36, self.square_side + 40, self.wm.BLACK)
                     self.wm.draw_circle_with_text(self.node_positions[self.remove[0] - 1][0], self.node_positions[self.remove[0] - 1][1], 24, self.wm.PURPLE, 1, str(self.remove[1]), 20)
-                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0] - 2][0], self.node_positions[self.remove[0] - 2][1] - 25), pygame.Vector2(self.node_positions[self.remove[0] - 1][0] - 24, self.node_positions[self.remove[0] - 1][1]), self.wm.RED, 4, 10, 8)                   
-                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0] - 1][0] + 24, self.node_positions[self.remove[0] - 1][1]), pygame.Vector2(self.node_positions[self.remove[0]][0], self.node_positions[self.remove[0]][1] - 25), self.wm.RED, 4, 10, 8)                   
+                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0]][0] - 12, self.node_positions[self.remove[0]][1] - 26), pygame.Vector2(self.node_positions[self.remove[0] - 1][0] + 26, self.node_positions[self.remove[0] - 1][1] - 12), self.wm.RED, 4, 10, 8)
+                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0] - 2][0] + 12, self.node_positions[self.remove[0] - 1][1] - 26), pygame.Vector2(self.node_positions[self.remove[0] - 1][0] - 24, self.node_positions[self.remove[0] - 1][1] - 12), self.wm.RED, 4, 10, 8)
+                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0] - 1][0] - 24, self.node_positions[self.remove[0] - 1][1] + 12), pygame.Vector2(self.node_positions[self.remove[0] - 2][0] - 12, self.node_positions[self.remove[0] - 2][1] - 26), self.wm.RED, 4, 10, 8)
+                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0] - 1][0] + 24, self.node_positions[self.remove[0] - 1][1] + 12), pygame.Vector2(self.node_positions[self.remove[0]][0] + 12, self.node_positions[self.remove[0]][1] - 26), self.wm.RED, 4, 10, 8)
                     self.wm.blit_screen()
                     pygame.time.delay(500)
-                    self.wm.draw_rect(self.node_positions[self.remove[0] - 1][0] - 84, self.node_positions[self.remove[0] - 1][1] - 26, self.square_side, self.square_side + 40, self.wm.BLACK)
-                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0] - 2][0] + 24, self.node_positions[self.remove[0] - 2][1] - 50), pygame.Vector2(self.node_positions[self.remove[0]][0] - 24, self.node_positions[self.remove[0]][1] - 50), self.wm.RED, 4, 10, 8)                   
+                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0]][0] - 25, self.node_positions[self.remove[0]][1] - 62), pygame.Vector2(self.node_positions[self.remove[0] - 2][0] + 24, self.node_positions[self.remove[0] - 2][1] - 62), self.wm.RED, 4, 10, 8)
+                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0] - 2][0] + 24, self.node_positions[self.remove[0] - 2][1] - 38), pygame.Vector2(self.node_positions[self.remove[0]][0] - 25, self.node_positions[self.remove[0]][1] - 38), self.wm.RED, 4, 10, 8)
+                    self.wm.draw_rect(self.node_positions[self.remove[0] - 1][0] - 94, self.node_positions[self.remove[0] - 1][1] - 26, self.square_side + 140, self.square_side + 40, self.wm.BLACK)
                     self.wm.blit_screen()
                     pygame.time.delay(500)
-                    self.wm.draw_rect(self.node_positions[self.remove[0] - 1][0] - 90, self.node_positions[self.remove[0] - 1][1] - 26, self.square_side + 130, self.square_side + 40, self.wm.BLACK)
-                    self.wm.blit_screen()
-                    pygame.time.delay(500)
-                    self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.remove[0] - 2][0] + 24, self.node_positions[self.remove[0] - 2][1] - 50), pygame.Vector2(self.node_positions[self.remove[0]][0] - 24, self.node_positions[self.remove[0]][1] - 50), self.wm.WHITE, 4, 10, 8)                   
-                    self.wm.blit_screen()
-                    pygame.time.delay(700)
                 
                 for x in range(self.remove[0], self.list.get_size() + 1):
                     if(x == self.list.get_size()):
-                        self.wm.draw_rect(self.node_positions[x - 1][0] - 40, self.node_positions[x - 1][1] - 100, self.square_side + 80, self.square_side + 40, self.wm.BLACK)
+                        self.wm.draw_rect(self.node_positions[x - 1][0] - 30, self.node_positions[x - 1][1] - 100, self.square_side + 120, self.square_side + 40, self.wm.BLACK)
                         self.wm.draw_circle_with_text(self.node_positions[x - 1][0], self.node_positions[x - 1][1] - 50, 24, self.wm.PURPLE, 1, str(self.list.get_element(x)), 20)
                         if(x != 1):
-                            self.wm.draw_arrow(pygame.Vector2(self.node_positions[x - 2][0] + 24, self.node_positions[x - 2][1] - 50), pygame.Vector2(self.node_positions[x - 1][0] - 24, self.node_positions[x - 1][1] - 50), self.wm.WHITE, 4, 10, 8)
+                            self.wm.draw_arrow(pygame.Vector2(self.node_positions[x - 1][0] - 25, self.node_positions[x - 1][1] - 62), pygame.Vector2(self.node_positions[x - 2][0] + 24, self.node_positions[x - 2][1] - 62), self.wm.WHITE, 4, 10, 8)
+                            self.wm.draw_arrow(pygame.Vector2(self.node_positions[x - 2][0] + 24, self.node_positions[x - 2][1] - 38), pygame.Vector2(self.node_positions[x - 1][0] - 25, self.node_positions[x - 1][1] - 38), self.wm.WHITE, 4, 10, 8)                       
                         self.wm.blit_screen()
                         pygame.time.delay(700)
                     else:
-                        self.wm.draw_rect(self.node_positions[x - 1][0] - 40, self.node_positions[x - 1][1] - 100, self.square_side + 40, self.square_side + 40, self.wm.BLACK)
-                        self.wm.draw_rect(self.node_positions[x][0] - 60, self.node_positions[x][1] - 100, self.square_side + 40, self.square_side + 40, self.wm.BLACK)
+                        self.wm.draw_rect(self.node_positions[x - 1][0] - 48, self.node_positions[x - 1][1] - 100, self.square_side + 60, self.square_side + 40, self.wm.BLACK)
+                        self.wm.draw_rect(self.node_positions[x][0] - 60, self.node_positions[x][1] - 100, self.square_side + 48, self.square_side + 40, self.wm.BLACK)
                         self.wm.draw_circle_with_text(self.node_positions[x - 1][0], self.node_positions[x - 1][1] - 50, 24, self.wm.PURPLE, 1, str(self.list.get_element(x)), 20)
+                        # self.wm.draw_arrow(pygame.Vector2(self.node_positions[x - 1][0] + 24, self.node_positions[x - 1][1] - 50), pygame.Vector2(self.node_positions[x][0] - 24, self.node_positions[x][1] - 50), self.wm.WHITE, 4, 10, 8)
                         if(x != 1):
-                            self.wm.draw_arrow(pygame.Vector2(self.node_positions[x - 2][0] + 24, self.node_positions[x - 2][1] - 50), pygame.Vector2(self.node_positions[x - 1][0] - 24, self.node_positions[x - 1][1] - 50), self.wm.WHITE, 4, 10, 8)
-                        self.wm.draw_arrow(pygame.Vector2(self.node_positions[x - 1][0] + 24, self.node_positions[x - 1][1] - 50), pygame.Vector2(self.node_positions[x][0] + 48, self.node_positions[x][1] - 50), self.wm.WHITE, 4, 10, 8)
+                            self.wm.draw_arrow(pygame.Vector2(self.node_positions[x - 1][0] - 25, self.node_positions[x - 1][1] - 62), pygame.Vector2(self.node_positions[x - 2][0] + 24, self.node_positions[x - 2][1] - 62), self.wm.WHITE, 4, 10, 8)
+                            self.wm.draw_arrow(pygame.Vector2(self.node_positions[x - 2][0] + 24, self.node_positions[x - 2][1] - 38), pygame.Vector2(self.node_positions[x - 1][0] - 25, self.node_positions[x - 1][1] - 38), self.wm.WHITE, 4, 10, 8)                     
+                        self.wm.draw_arrow(pygame.Vector2(self.node_positions[x + 1][0] - 25, self.node_positions[x + 1][1] - 62), pygame.Vector2(self.node_positions[x - 1][0] + 24, self.node_positions[x - 1][1] - 62), self.wm.WHITE, 4, 10, 8)
+                        self.wm.draw_arrow(pygame.Vector2(self.node_positions[x - 1][0] + 24, self.node_positions[x - 1][1] - 38), pygame.Vector2(self.node_positions[x + 1][0] - 25, self.node_positions[x + 1][1] - 38), self.wm.WHITE, 4, 10, 8)   
                         self.wm.blit_screen()
                         pygame.time.delay(700)
             self.print_static_imgs()      #printing the static images
             
             if self.error_add:  #error treatment
-                self.wm.draw_text("Opa, erro ao inserir!", 16, 400, 150, self.wm.YELLOW)
+                self.wm.draw_text("Erro ao inserir!", 16, 400, 150, self.wm.YELLOW)
             if self.error_remove:
-                self.wm.draw_text("Opa, erro ao remover! Posição inválida.", 16, 400, 150, self.wm.YELLOW)
+                self.wm.draw_text("Erro ao remover! Posição inválida.", 16, 400, 150, self.wm.YELLOW)
             if self.error_search:
-                self.wm.draw_text("Opa, erro ao buscar! Posição ou elemento inválido.", 16, 400, 150, self.wm.YELLOW)
+                self.wm.draw_text("Erro ao buscar! Posição ou elemento inválido.", 16, 400, 150, self.wm.YELLOW)
 
     
             for i in range(self.list.qtd_elements):               #plotting the double linked list 
@@ -250,12 +264,15 @@ class DoublyLinkedList():
                     
                     if self.input_box3.text == '':   #if the user didnt type anything
                         self.error_remove = True
-                    else:                                 
-                        if self.list.remove(int(self.input_box3.text)) == None:     #if the position to be removed is invalid
+                    else:  
+                        removed_value = self.list.remove(int(self.input_box3.text))                               
+                        if removed_value == None:     #if the position to be removed is invalid
                             self.error_remove = True
+                            return True                        
                         else:                               #if the remove was sucessfull 
                             self.error_remove = False
-                        
+                            self.remove = (int(self.input_box3.text), removed_value)
+                            return "remove"
                         
                 #this is referent to the send button of "BUSCAR"
                 elif self.wm.collide_point("imgs/enviar.png",self.box_x*3+115, self.box_y+self.spacing+40, mouse_position):

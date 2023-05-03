@@ -93,13 +93,21 @@ class Doubly_linked_list:
             return None
         else:
             if position == 1:
-               removed_value = self.first_node.get_value()
-               self.first_node = self.first_node.get_next_node()
-               self.first_node.set_previous_node(None)
-               
-               self.qtd_elements = self.qtd_elements - 1
-               
-               return removed_value
+                if(self.get_size() > 1):
+                    removed_value = self.first_node.get_value()
+                    self.first_node = self.first_node.get_next_node()
+                    self.first_node.set_previous_node(None)
+                    
+                    self.qtd_elements = self.qtd_elements - 1
+                    
+                    return removed_value
+                else:
+                    removed_value = self.first_node.get_value()
+                    self.first_node = self.first_node.get_next_node()
+                    
+                    self.qtd_elements = self.qtd_elements - 1
+                    
+                    return removed_value
             elif position == self.qtd_elements:
                 removed_value = self.last_node.get_value()
                 self.last_node = self.last_node.get_previous_node()
