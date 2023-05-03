@@ -164,7 +164,6 @@ class DoublyLinkedList():
                         self.wm.blit_screen()
                         pygame.time.delay(500)
                         self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.add[0] - 1][0] + 24, self.node_positions[self.add[0] - 1][1] + 12), pygame.Vector2(self.node_positions[self.add[0]][0] + 12, self.node_positions[self.add[0]][1] - 26), self.wm.YELLOW, 4, 10, 8)
-<<<<<<< HEAD
                         self.wm.blit_screen()
                         pygame.time.delay(500)
                         self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.add[0] - 1][0] - 24, self.node_positions[self.add[0] - 1][1] + 12), pygame.Vector2(self.node_positions[self.add[0] - 2][0] - 12, self.node_positions[self.add[0] - 2][1] - 26), self.wm.YELLOW, 4, 10, 8)
@@ -173,16 +172,6 @@ class DoublyLinkedList():
                         self.wm.draw_rect(self.node_positions[self.add[0] - 1][0] - 48, self.node_positions[self.add[0] - 1][1] - 80, self.square_side + 36, self.square_side - 10, self.wm.BLACK)
                         self.wm.blit_screen()
                         pygame.time.delay(500)
-=======
-                        self.wm.blit_screen()
-                        pygame.time.delay(500)
-                        self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.add[0] - 1][0] - 24, self.node_positions[self.add[0] - 1][1] + 12), pygame.Vector2(self.node_positions[self.add[0] - 2][0] - 12, self.node_positions[self.add[0] - 2][1] - 26), self.wm.YELLOW, 4, 10, 8)
-                        self.wm.blit_screen()
-                        pygame.time.delay(500)
-                        self.wm.draw_rect(self.node_positions[self.add[0] - 1][0] - 48, self.node_positions[self.add[0] - 1][1] - 80, self.square_side + 36, self.square_side - 10, self.wm.BLACK)
-                        self.wm.blit_screen()
-                        pygame.time.delay(500)
->>>>>>> 93504db5aaa9d49616e7f6cbe2ec8aa96ce4fc7d
                         self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.add[0]][0] - 12, self.node_positions[self.add[0]][1] - 26), pygame.Vector2(self.node_positions[self.add[0] - 1][0] + 26, self.node_positions[self.add[0] - 1][1] - 12), self.wm.YELLOW, 4, 10, 8)
                         self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.add[0] - 2][0] + 12, self.node_positions[self.add[0] - 1][1] - 26), pygame.Vector2(self.node_positions[self.add[0] - 1][0] - 24, self.node_positions[self.add[0] - 1][1] - 12), self.wm.YELLOW, 4, 10, 8)
                         self.wm.blit_screen()
