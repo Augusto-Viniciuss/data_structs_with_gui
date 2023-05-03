@@ -70,7 +70,7 @@ class WindowManager:
             pygame.draw.circle(self.display, color,(posx, posy), radius, cirborder)
     
     def draw_circle_with_text(self, posx, posy, radius, color, thickness = 1, text = "", text_size = 5):
-        pygame.draw.circle(self.display, color, (posx, posy), radius, thickness)
+        pygame.draw.circle(self.display, self.WHITE, (posx, posy), radius, thickness)
         self.draw_text(text, text_size, posx, posy, color)
     
     def draw_arrow(self, start, end, color, body_width = 2, head_width = 4, head_height = 2):
