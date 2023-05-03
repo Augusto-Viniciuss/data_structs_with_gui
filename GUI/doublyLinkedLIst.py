@@ -129,7 +129,6 @@ class DoublyLinkedList():
                 else:
                     for x in range(self.list.get_size(), self.add[0], -1):
                         if(x == self.list.get_size()):
-                            print("çalsdkjf")
                             self.wm.draw_rect(self.node_positions[x - 2][0] - 40, self.node_positions[x - 2][1] - 100, self.square_side + 40, self.square_side + 40, self.wm.BLACK)
                             self.wm.draw_circle_with_text(self.node_positions[x - 1][0], self.node_positions[x - 1][1] - 50, 24, self.wm.PURPLE, 1, str(self.list.get_element(x)), 20)
                             if(x - 1 != 1):
@@ -159,7 +158,6 @@ class DoublyLinkedList():
                             pygame.time.delay(700)
                     
                     if(self.add[0] != 1):
-                        print("pedro")
                         self.wm.draw_circle_with_text(self.node_positions[self.add[0] - 1][0], self.node_positions[self.add[0] - 1][1], 24, self.wm.PURPLE, 1, str(self.list.get_element(self.add[0])), 20)
                         self.wm.blit_screen()
                         pygame.time.delay(500)

@@ -24,7 +24,7 @@ class LinkedList():
         self.error_add, self.error_remove, self.error_search = False, False, False
         self.node_positions = [[self.mid_w - 324, self.mid_h], [self.mid_w - 252, self.mid_h], [self.mid_w - 180, self.mid_h], [self.mid_w - 108, self.mid_h], [self.mid_w - 36, self.mid_h], [self.mid_w + 36, self.mid_h], [self.mid_w + 108, self.mid_h], [self.mid_w + 180, self.mid_h], [self.mid_w + 252, self.mid_h], [self.mid_w + 324, self.mid_h]]
         self.square_w,self.square_h = 59.8, 250
-        self.square_side, self.square_border = 60, 1
+        self.square_side, self.circle_border = 60, 1
         self.square_number_w, self.square_number_h= self.square_w+self.square_side/2, self.square_h+self.square_side/2
 
     def show_display(self):
@@ -256,7 +256,6 @@ class LinkedList():
                         else:                      #the position exists
                             self.fetch = ("position", int(self.input_box4.text), element)
                             self.error_search = False
-                            print(self.fetch)
                             return "busca"
                         
                     elif self.input_box5.text != '' and self.input_box4.text == '':    #if the search by element is filled
@@ -268,7 +267,6 @@ class LinkedList():
                         else:      
                             self.error_search = False
                             self.fetch = ("element", position)
-                            print(self.fetch)
                             return "busca"
             
         
