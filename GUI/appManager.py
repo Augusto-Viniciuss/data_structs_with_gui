@@ -4,6 +4,11 @@ from menu import Menu
 from sequentialList import SequentialList
 from linkedList import LinkedList
 from doublyLinkedLIst import DoublyLinkedList
+from stack import Stack_
+from common_queue import Common_Queue
+from tree import Tree_
+
+
 
 class AppManager():
     def __init__(self):
@@ -26,3 +31,9 @@ class AppManager():
                 self.current_window = LinkedList()
             elif next_window == 4:
                 self.current_window = DoublyLinkedList()
+            elif next_window == 5:
+                self.current_window = Stack_()
+            elif next_window == 6:
+                self.current_window = Common_Queue()
+            elif next_window == 7:
+                self.current_window = Tree_()
