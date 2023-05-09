@@ -36,7 +36,7 @@ class Common_Queue():
                 return self.flag_input
             if self.flag_input == "menu" or self.flag_input == "quit": 
                 return self.flag_input
-            elif self.flag_input == "busca":
+            """elif self.flag_input == "busca":
                 if(self.fetch[0] == "element"):
                     for x in range(self.fetch[1]+1):
                             
@@ -69,9 +69,9 @@ class Common_Queue():
                                 self.wm.draw_circle(self.node_positions[x-1][0], self.node_positions[x - 1][1]-50, 24, self.wm.YELLOW, self.circle_border)
                         
                         self.wm.blit_screen()
-                        pygame.time.delay(700)    
+                        pygame.time.delay(700)"""    
 
-            elif(self.flag_input == "add"):
+            if(self.flag_input == "add"):
                 if(self.add[0] == self.queue.get_size()):
                     self.wm.draw_circle_with_text(self.node_positions[self.add[0] - 1][0], self.node_positions[self.add[0] - 1][1] - 50, 24, self.wm.PURPLE, 1, str(self.queue.get_element(self.add[0])), 20)
                     self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.add[0] - 2][0] + 24, self.node_positions[self.add[0] - 2][1] - 50), pygame.Vector2(self.node_positions[self.add[0] - 1][0] - 24, self.node_positions[self.add[0] - 1][1] - 50), self.wm.YELLOW, 4, 10, 8)
@@ -96,7 +96,7 @@ class Common_Queue():
                 
 
             elif(self.flag_input == "remove"):
-               if(self.queue.get_size() > 0):
+                if(self.queue.get_size() > 0):
                     self.wm.draw_arrow(pygame.Vector2(self.node_positions[0][0] + 24, self.node_positions[0][1] - 50), pygame.Vector2(self.node_positions[1][0] - 24, self.node_positions[1][1] - 50), self.wm.RED, 4, 10, 8)
                     self.wm.blit_screen()
                     pygame.time.delay(700)
@@ -149,9 +149,8 @@ class Common_Queue():
                     if self.input_box1.text != '' and self.input_box2.text != '':   #if the user filled the two boxes
 
                         if self.queue.qtd_elements < 10:    #if the queue didnt have 10 elem yet
-                            if self.queue.insert(int(self.input_box1.text), int(self.input_box2.text)) == True:
+                            if self.queue.insert(int(self.input_box1.text)) == True:
                                 self.error_add = False
-                                self.add = (int(self.input_box2.text), int(self.input_box1.text))
                                 return "add"
                             else:
                                 self.error_add = True
@@ -159,22 +158,18 @@ class Common_Queue():
                         else:
                             self.error_add = True   
                             
-                    elif self.input_box1.text == '' or self.input_box2.text == '':  #if the user forget to fill any box
+                    elif self.input_box1.text == '':  #if the user forget to fill any box
                         self.error_add = True
                 
                 #this is referent to the "send" button of "REMOVER" 
                 elif self.wm.collide_point("imgs/enviar.png",self.box_x*2+85, self.box_y+self.spacing+40, mouse_position):
-                
-                    if self.input_box3.text == '':      #if the user type nothing
-                        self.error_remove = True
-                    else:
-                        removed_value = self.queue.remove(int(self.input_box3.text))                          
+                        removed_value = self.queue.remove()                          
                         if removed_value == None:     #if the position to be removed is invalid
                             self.error_remove = True
                             return None
                         else:                               #if the remove is valid 
                             self.error_remove = False
-                            self.remove = (int(self.input_box3.text), removed_value)
+                            self.remove = ()
                             return "remove"                        
                 #this is referent to the "send" button of "BUSCA"    
                 elif self.wm.collide_point("imgs/enviar.png",self.box_x*3+115, self.box_y+self.spacing+40, mouse_position):
@@ -214,7 +209,7 @@ class Common_Queue():
     def print_static_imgs(self):
     
         self.wm.display.fill(self.wm.BLACK)
-        #self.wm.add_img("imgs/lse.png", 400, 70)     #title
+        self.wm.add_img("imgs/queue.png", 400, 70)     #title
         self.wm.add_img("imgs/inserir.png", self.box_x+55, self.box_y-30)  #in the top of first column
         self.wm.add_img("imgs/remover.png", self.box_x*2+85, self.box_y-30)  #in the top of second column
         self.wm.add_img("imgs/buscar.png", self.box_x*3+115, self.box_y-30)  #in the top of third column
@@ -226,8 +221,6 @@ class Common_Queue():
         self.wm.add_img("imgs/enviar2.png", self.box_x*3+115, self.box_y+self.spacing+40)
 
         self.input_box1.draw(self.wm.display)
-        self.input_box2.draw(self.wm.display)
-        self.input_box3.draw(self.wm.display)
         self.input_box4.draw(self.wm.display)
         self.input_box5.draw(self.wm.display)
    
