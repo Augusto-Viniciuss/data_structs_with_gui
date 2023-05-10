@@ -17,9 +17,8 @@ class Common_Queue():
         self.add = None
         self.remove = None
         self.flag_input = None
-        self.input_box1 = InputBox(self.box_x-50, self.box_y+5)       #box inserir-elemento     
-        self.input_box4 = InputBox(self.box_x*3+85, self.box_y)     #box busca- posicao
-        self.input_box5 = InputBox(self.box_x*3+85, self.box_y+50)  #box busca- elemento
+
+        self.input_box1 = InputBox(self.box_x-5, self.box_y)       #box inserir-elemento    
         
         self.error_add, self.error_remove, self.error_search = False, False, False
         self.node_positions = [[self.mid_w - 324, self.mid_h], [self.mid_w - 252, self.mid_h], [self.mid_w - 180, self.mid_h], [self.mid_w - 108, self.mid_h], [self.mid_w - 36, self.mid_h], [self.mid_w + 36, self.mid_h], [self.mid_w + 108, self.mid_h], [self.mid_w + 180, self.mid_h], [self.mid_w + 252, self.mid_h], [self.mid_w + 324, self.mid_h]]
@@ -123,8 +122,6 @@ class Common_Queue():
                     return "menu"
                     
             self.input_box1.handle_event(event)
-            self.input_box4.handle_event(event)
-            self.input_box5.handle_event(event)
             
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_position = pygame.mouse.get_pos() 
@@ -193,23 +190,13 @@ class Common_Queue():
     
         self.wm.display.fill(self.wm.BLACK)
         self.wm.add_img("imgs/queue.png", 400, 70)     #title
+        self.wm.add_img("imgs/inserir.png", self.box_x+55, self.box_y-30)  #in the top of first column
+        self.wm.add_img("imgs/remover.png", self.box_x*2+85, self.box_y-30)  #in the top of second column
+        self.wm.add_img("imgs/buscar.png", self.box_x*3+115, self.box_y-30)  #in the top of third column
+        self.wm.add_img("imgs/elemento.png", self.box_x-self.spacing, self.box_y+15)  #in the left of first line
         
-        #inserir column 
-        self.wm.add_img("imgs/inserir.png", self.box_x+10, self.box_y-30)  #in the top of first column
-        self.wm.add_img("imgs/elemento.png", self.box_x-self.spacing-30, self.box_y+20)  #below "inserir"
-        self.wm.add_img("imgs/enviar2.png", self.box_x+10, self.box_y+self.spacing)
-        
-        #remove column
-        self.wm.add_img("imgs/remover.png", self.box_x*2+5, self.box_y-30)  #in the top of second column
-        self.wm.add_img("imgs/enviar2.png", self.box_x*2+5, self.box_y+self.spacing)
-        
-        #search column
-        self.wm.add_img("imgs/buscar.png", self.box_x*3+140, self.box_y-30)  #in the top of third column
-        self.wm.add_img("imgs/posicao.png", self.box_x*3+30, self.box_y+15)  #in the left of first line
-        self.wm.add_img("imgs/elemento.png", self.box_x*3+30, self.box_y+50+15)  #in the left of second line
-        self.wm.add_img("imgs/enviar2.png", self.box_x*3+140, self.box_y+self.spacing+40)
+        self.wm.add_img("imgs/enviar2.png", self.box_x+55, self.box_y+self.spacing)
+        self.wm.add_img("imgs/enviar2.png", self.box_x*2+85, self.box_y+self.spacing)
+        self.wm.add_img("imgs/enviar2.png", self.box_x*3+115, self.box_y+self.spacing)
 
         self.input_box1.draw(self.wm.display)
-        self.input_box4.draw(self.wm.display)
-        self.input_box5.draw(self.wm.display)
-   
