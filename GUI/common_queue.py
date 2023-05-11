@@ -34,47 +34,15 @@ class Common_Queue():
                 return self.flag_input
             if self.flag_input == "menu" or self.flag_input == "quit": 
                 return self.flag_input
-            # elif self.flag_input == "busca":
-            #     if(self.fetch[0] == "element"):
-            #         for x in range(self.fetch[1]+1):
-                            
-            #             if(x == self.fetch[1]):
-            #                 if(x == 0): 
-            #                     self.wm.draw_circle(self.node_positions[0][0], self.node_positions[x - 1][1]-50, 24, self.wm.BLUE, self.circle_border)
-            #                 else: 
-            #                     self.wm.draw_circle(self.node_positions[x - 1][0], self.node_positions[x - 1][1]-50, 24, self.wm.BLUE, self.circle_border)
-            #             else:
-            #                 if(x == 0): 
-            #                     self.wm.draw_circle(self.node_positions[0][0], self.node_positions[x - 1][1]-50, 24, self.wm.YELLOW, self.circle_border)
-            #                 else:
-            #                     self.wm.draw_circle(self.node_positions[x-1][0], self.node_positions[x - 1][1]-50, 24, self.wm.YELLOW, self.circle_border)
+            elif self.flag_input == "busca":
+                self.wm.draw_circle(self.node_positions[0][0], self.node_positions[0][1]-50, 24, self.wm.BLUE, self.circle_border)
                         
-            #             self.wm.blit_screen()   
-            #             pygame.time.delay(500)     
-
-            #     elif(self.fetch[0] == "position"):
-            #         for x in range(self.fetch[1]+1):
-                        
-            #             if(x == self.fetch[1]):
-            #                 if(x == 0): 
-            #                     self.wm.draw_circle(self.node_positions[0][0], self.node_positions[x - 1][1]-50, 24, self.wm.BLUE, self.circle_border)
-            #                 else: 
-            #                     self.wm.draw_circle(self.node_positions[x - 1][0], self.node_positions[x - 1][1]-50, 24, self.wm.BLUE, self.circle_border)
-            #             else:
-            #                 if(x == 0): 
-            #                     self.wm.draw_circle(self.node_positions[0][0], self.node_positions[x - 1][1]-50, 24, self.wm.YELLOW, self.circle_border)
-            #                 else:
-            #                     self.wm.draw_circle(self.node_positions[x-1][0], self.node_positions[x - 1][1]-50, 24, self.wm.YELLOW, self.circle_border)
-                        
-            #             self.wm.blit_screen()
-            #             pygame.time.delay(700)  
+                self.wm.blit_screen()   
+                pygame.time.delay(500)     
+ 
 
             # if(self.flag_input == "add"):
-            #     if(self.list.get_size() == 1):
-            #         self.wm.draw_circle_with_text(self.node_positions[self.add[0] - 1][0], self.node_positions[self.add[0] - 1][1] - 50, 24, self.wm.PURPLE, 1, str(self.list.get_element(self.add[0])), 20)
-            #         self.wm.blit_screen()
-            #         pygame.time.delay(700)
-            #     elif(self.add[0] == self.list.get_size()):
+            #     if(self.add[0] == self.list.get_size()):
             #         self.wm.draw_circle_with_text(self.node_positions[self.add[0] - 1][0], self.node_positions[self.add[0] - 1][1] - 50, 24, self.wm.PURPLE, 1, str(self.list.get_element(self.add[0])), 20)
             #         self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.add[0] - 2][0] + 24, self.node_positions[self.add[0] - 2][1] - 50), pygame.Vector2(self.node_positions[self.add[0] - 1][0] - 24, self.node_positions[self.add[0] - 1][1] - 50), self.wm.YELLOW, 4, 10, 8)
             #         self.wm.blit_screen()
@@ -128,7 +96,6 @@ class Common_Queue():
                 
                 #this is referent to the "send" button of "INSERIR" 
                 if self.wm.collide_point("imgs/enviar.png",self.box_x+10, self.box_y+self.spacing, mouse_position):
-                    print("cheguei")
                     if self.input_box1.text != '':   #if the user filled the box with element
                         if self.queue.qtd_elements < 10:    #if the queue didnt have 10 elem yet
                             if self.queue.insert(int(self.input_box1.text)) == True:
@@ -154,30 +121,13 @@ class Common_Queue():
                 #this is referent to the "send" button of "BUSCA"    
                 elif self.wm.collide_point("imgs/enviar.png",self.box_x*3+115, self.box_y+self.spacing+40, mouse_position):
                     element = ''
-                    
-                    if self.input_box4.text != '' and self.input_box5.text != '':        #if the user typed in the two boxes
+                    if self.queue.get_begin_element() == None:
                         self.error_search = True
                         
-                    elif self.input_box4.text != '' and self.input_box5.text == '':    #if the box by position is filled
-                        element = self.queue.get_element(int(self.input_box4.text))
-                        if  element == None:       #the position does not exist
-                            self.error_search = True
-                            return None
-                        else:                      #the position exists
-                            self.fetch = ("position", int(self.input_box4.text), element)
-                            self.error_search = False
-                            return "busca"
-                        
-                    elif self.input_box5.text != '' and self.input_box4.text == '':    #if the search by element is filled
-                        position = self.queue.get_position(int(self.input_box5.text))
-                        
-                        if  position == None:       #if the element does not exist
-                            self.error_search = True
-                            return None
-                        else:      
-                            self.error_search = False
-                            self.fetch = ("element", position)
-                            return "busca"
+                    else:
+                        self.error_search = False
+                        self.fetch = self.queue.get_begin_element()
+                    
     
     def create_node(self, posx, posy, text, color_text, node_index):
         self.wm.draw_circle_with_text(posx, posy, 24, color_text, 1, str(text), 20)
