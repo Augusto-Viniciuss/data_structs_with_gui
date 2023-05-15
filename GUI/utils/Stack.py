@@ -39,3 +39,13 @@ class Stack:
             self.qtd_elements -= 1
             
             return True
+        
+
+    def listelements(self, position):
+        if self.qtd_elements==0:
+            return False
+        else:
+            aux = self.top
+            for x in range(position):
+                aux = aux.get_next_node()
+            return aux.get_value()
