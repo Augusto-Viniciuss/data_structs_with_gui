@@ -42,3 +42,12 @@ class Queue:
             return True
         else:
             return False
+        
+    def listelements(self, position):
+        if self.qtd_elements==0:
+            return False
+        else:
+            aux = self.begin
+            for x in range(position):
+                aux = aux.get_next_node()
+            return aux.get_value()
