@@ -43,7 +43,7 @@ class Queue:
         else:
             return False
         
-    def listelements(self, position):
+    def get_element(self, position):
         if self.qtd_elements==0:
             return False
         else:

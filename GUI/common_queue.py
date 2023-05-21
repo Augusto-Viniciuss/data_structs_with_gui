@@ -30,10 +30,13 @@ class Common_Queue():
         running = True
         while running: 
             self.flag_input = self.check_input()
+
             if self.flag_input == "menu" or self.flag_input == "quit": 
                 return self.flag_input
+            
             if self.flag_input == "menu" or self.flag_input == "quit": 
                 return self.flag_input
+            
             elif self.flag_input == "busca":
                 self.wm.draw_circle(self.node_positions[0][0], self.node_positions[0][1]-50, 24, self.wm.BLUE, self.circle_border)
                         
@@ -42,8 +45,8 @@ class Common_Queue():
  
 
             # if(self.flag_input == "add"):
-            #     if(self.add[0] == self.list.get_size()):
-            #         self.wm.draw_circle_with_text(self.node_positions[self.add[0] - 1][0], self.node_positions[self.add[0] - 1][1] - 50, 24, self.wm.PURPLE, 1, str(self.list.get_element(self.add[0])), 20)
+            #     if(self.add[0] == self.queue.get_size()):
+            #         self.wm.draw_circle_with_text(self.node_positions[self.add[0] - 1][0], self.node_positions[self.add[0] - 1][1] - 50, 24, self.wm.PURPLE, 1, str(self.queue.get_element(self.add[0])), 20)
             #         self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.add[0] - 2][0] + 24, self.node_positions[self.add[0] - 2][1] - 50), pygame.Vector2(self.node_positions[self.add[0] - 1][0] - 24, self.node_positions[self.add[0] - 1][1] - 50), self.wm.YELLOW, 4, 10, 8)
             #         self.wm.blit_screen()
             #         pygame.time.delay(700)
@@ -62,7 +65,7 @@ class Common_Queue():
             self.print_static_imgs()     #function where the images and the input boxes are printed
             
             for i in range(self.queue.qtd_elements):
-                text = self.queue.get_begin_element()
+                text = self.queue.get_element(i)
                 self.create_node(self.node_positions[i][0], self.node_positions[i][1]-50, str(text), self.wm.PURPLE, i)
             
             if self.error_add:  #error treatment
