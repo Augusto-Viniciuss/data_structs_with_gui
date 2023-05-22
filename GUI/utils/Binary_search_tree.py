@@ -16,9 +16,9 @@ class Binary_search_tree:
 
             while aux_node != None:
                 if aux_node.get_value() > value:
-                    aux_node = get_previous_node()
+                    aux_node = aux_node.get_previous_node()
                 elif aux_node.get_value() < value:
-                    aux_node = get_next_node()
+                    aux_node = aux_node.get_next_node()
                 elif aux_node.get_value() == value:
                     return True
 
