@@ -52,7 +52,7 @@ class Binary_search_tree:
             return
         else:
             if walking_type == "prefix":
-                printf(node.get_value())
+                print(node.get_value())
 
             if node.get_previous_node() != None:
                 self.show_tree(node.get_previous_node(), walking_type)
@@ -64,4 +64,4 @@ class Binary_search_tree:
                 self.show_tree(node.get_next_node(), walking_type)
 
             if walking_type == "suffix":
-                print(node.get_value))
+                print(node.get_value())
