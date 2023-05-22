@@ -47,10 +47,13 @@ class Binary_search_tree:
 
         return True
 
-    def show_tree(self, node = root, walking_type = "prefix"):
+    def show_tree(self, node = None, walking_type = "prefix"):
         if self.is_empty():
             return
         else:
+            if node == None:
+                node = self.root
+
             if walking_type == "prefix":
                 print(node.get_value())
 
