@@ -16,6 +16,7 @@ class Tree_():
 
         self.input_box1 = InputBox(140, 660)
         self.input_box2 = InputBox(315, 660)
+        self.box_side = 50
 
     def show_display(self):
 
@@ -94,3 +95,7 @@ class Tree_():
         
         self.input_box1.draw(self.wm.display)
         self.input_box2.draw(self.wm.display)
+
+
+        for i in range(15):
+            self.wm.draw_rect(25+(i*50), 525, self.box_side, self.box_side, self.wm.WHITE, 1)
