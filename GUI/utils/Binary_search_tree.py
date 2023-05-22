@@ -47,7 +47,7 @@ class Binary_search_tree:
 
         return True
 
-    def show_tree(self, node = self.root, walking_type = "prefix"):
+    def show_tree(self, node = root, walking_type = "prefix"):
         if self.is_empty():
             return
         else:
