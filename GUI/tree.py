@@ -166,39 +166,39 @@ class Tree_():
                                 else:
                                     print("deu erro arvore cheia")
                         
-            # else:                #valor inserido maior que a raiz
-            #     if self.active[2][0] == False:
-            #         self.active[2]= True, self.add[1]
-            #     else:
-            #         if self.add[1] < self.active[2][1]:       #valor é menor que o primeiro nó a direita
-            #             if self.active[5][0] == False:      
-            #                 self.active[5]= True, self.add[1]
+            else:                #valor inserido maior que a raiz
+                if self.active[2][0] == False:
+                    self.active[2]= True, self.add[1]
+                else:
+                    if self.add[1] < self.active[2][1]:       #valor é menor que o primeiro nó a direita
+                        if self.active[5][0] == False:      
+                            self.active[5]= True, self.add[1]
                             
-            #             else:                                 # nó a esquerda do 2 nó ja existe
-            #                 if self.add[1] < self.active[5][1]:
-            #                     if self.active[11][0] == False:
-            #                         self.active[11] = True, self.add[1]
-            #                     else:
-            #                         print("deu erro moral tree cheia!")
-            #                 else:
-            #                     if self.active[12][0] == False:
-            #                         self.active[12] = True, self.add[1]
-            #                     else:
-            #                         print("deu erro moral tree cheia!")
+                        else:                                 # nó a esquerda do 2 nó ja existe
+                            if self.add[1] < self.active[5][1]:
+                                if self.active[11][0] == False:
+                                    self.active[11] = True, self.add[1]
+                                else:
+                                    print("deu erro  tree cheia!")
+                            else:
+                                if self.active[12][0] == False:
+                                    self.active[12] = True, self.add[1]
+                                else:
+                                    print("deu erro  tree cheia!")
                         
-            #         else:     #valor é maior que o 1 nó a esquerda       
-            #             if self.active[6][0] == False:      
-            #                 self.active[6] = True, self.add[1]
+                    else:     #valor é maior que o 1 nó a esquerda       
+                        if self.active[6][0] == False:      
+                            self.active[6] = True, self.add[1]
                             
-            #             else:
-            #                 if self.add[1] < self.active[6][1]:
-            #                     if self.active[13][0] == False:
-            #                         self.active[13] = True, self.add[1]
-            #                     else:
-            #                         print("deu erro moral tree cheia!")
-            #                 else:
-            #                     if self.active[14][0] == False:
-            #                         self.active[14][0] = True, self.add[1]
-            #                     else:
-            #                         print("deu erro moral tree cheia!")
+                        else:
+                            if self.add[1] < self.active[6][1]:
+                                if self.active[13][0] == False:
+                                    self.active[13] = True, self.add[1]
+                                else:
+                                    print("deu erro  tree cheia!")
+                            else:
+                                if self.active[14][0] == False:
+                                    self.active[14][0] = True, self.add[1]
+                                else:
+                                    print("deu erro  tree cheia!")
             
