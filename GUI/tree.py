@@ -198,7 +198,7 @@ class Tree_():
                                     print("deu erro  tree cheia!")
                             else:
                                 if self.active[14][0] == False:
-                                    self.active[14][0] = True, self.add[1]
+                                    self.active[14] = True, self.add[1]
                                 else:
                                     print("deu erro  tree cheia!")
             
