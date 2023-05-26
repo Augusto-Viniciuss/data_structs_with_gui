@@ -79,7 +79,7 @@ class Tree_():
                 mouse_position = pygame.mouse.get_pos() 
     
                 #this is referent to the "send" button of "INSERIR" 
-                if self.wm.collide_point("imgs/enviar.png", 200, 500, mouse_position):
+                if self.wm.collide_point("imgs/enviar.png", 200, 725, mouse_position):
     
                     if self.input_box1.text != '':   #if the user filled the box with element
                         self.tree.insert(int(self.input_box1.text))        #inserindo elemento
@@ -114,7 +114,7 @@ class Tree_():
         self.wm.add_img("imgs/caminhamento.png", 600, 630)  
         self.wm.add_img("imgs/elemento.png", 75, 675)  
         
-        self.wm.add_img("imgs/enviar2.png", 200, 500)  #inserir button          **************ycerto= 725
+        self.wm.add_img("imgs/enviar2.png", 200, 725)  #inserir button          **************ycerto= 725
         self.wm.add_img("imgs/enviar2.png", 375, 725)  #busca button
         self.wm.add_img("imgs/preordem.png", 600, 675)  #caminhamento button
         self.wm.add_img("imgs/inordem.png", 600, 715)  #caminhamento button
@@ -138,7 +138,7 @@ class Tree_():
                 else:
                     if self.add[1] < self.active[1][1]:      #1º nó a esquerda ja existe e o valor inserido é menor
                         if self.active[3][0] == False:       
-                                self.active[3] = True, self.add[1]
+                            self.active[3] = True, self.add[1]
                         else:                                #2 nó a esquerda ja existe
                             if self.add[1] < self.active[3][1]:  #valor é menor que o 2 nó
                                 if self.active[7][0] == False:       
