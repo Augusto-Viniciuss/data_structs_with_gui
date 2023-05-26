@@ -38,6 +38,7 @@ class Tree_():
 
             if self.add[0] == "add":
                 self.define_flags_add()
+                self.add[0] = ""
                         
                    
 
@@ -57,9 +58,9 @@ class Tree_():
             # self.wm.draw_circle_with_text(self.node_positions[13][0],self.node_positions[13][1] , 24, self.wm.WHITE, 1, "14", 20)
             # self.wm.draw_circle_with_text(self.node_positions[14][0],self.node_positions[14][1] , 24, self.wm.WHITE, 1, "15", 20)
 
-            # for i in range(len(self.active)):
-            #     if self.active[i][0] == True: 
-            #         self.wm.draw_circle_with_text(self.node_positions[i][0],self.node_positions[i][1] , 24, self.wm.WHITE, 1, str(self.active[i][1]), 20)  
+            for i in range(len(self.active)):
+                if self.active[i][0] == True: 
+                    self.wm.draw_circle_with_text(self.node_positions[i][0],self.node_positions[i][1] , 24, self.wm.WHITE, 1, str(self.active[i][1]), 20)  
             
             
             self.wm.blit_screen()
@@ -82,15 +83,6 @@ class Tree_():
     
                     if self.input_box1.text != '':   #if the user filled the box with element
                         self.tree.insert(int(self.input_box1.text))        #inserindo elemento
-        
-                        if self.entered_first == 0:
-                            self.active[0] = int(self.input_box1.text)
-                        else: 
-                            self.active.append(int(self.input_box1.text))
-
-                        if self.entered_first == 0:
-                           self. entered_first += 1;
-
                         self.add = "add", int(self.input_box1.text)
                         
                         
@@ -138,75 +130,75 @@ class Tree_():
     def define_flags_add(self):
         
         if self.active[0][0] == False:        #se o nó raiz nao tiver valor ainda
-                    self.active[0] = True, self.add[1]
+            self.active[0] = True, self.add[1]
         else:                                 
             if self.add[1] < self.active[0][1]:      #raiz existe e o valor a ser inserido é menor que o nó raiz
                 if self.active[1][0] == False:
                     self.active[1] = True, self.add[1]
-                else:
-                    if self.add[1] < self.active[1][1]:      #1º nó a esquerda ja existe e o valor inserido é menor
-                        if self.active[3][0] == False:       
-                            self.active[3] = True, self.add[1]
-                        else:                                #2 nó a esquerda ja existe
-                            if self.add[1] < self.active[3][1]:  #valor é menor que o 2 nó
-                                if self.active[7][0] == False:       
-                                    self.active[7] = True, self.add[1]
-                                else:
-                                    print("deu erro arvore cheia")
-                            else:                              #valor é maior que 2 nó
-                                if self.active[8][0] == False:       
-                                    self.active[8] = True, self.add[1]
-                                else: 
-                                    print("deu erro arvore cheia")
+            #     else:
+            #         if self.add[1] < self.active[1][1]:      #1º nó a esquerda ja existe e o valor inserido é menor
+            #             if self.active[3][0] == False:       
+            #                 self.active[3] = True, self.add[1]
+            #             else:                                #2 nó a esquerda ja existe
+            #                 if self.add[1] < self.active[3][1]:  #valor é menor que o 2 nó
+            #                     if self.active[7][0] == False:       
+            #                         self.active[7] = True, self.add[1]
+            #                     else:
+            #                         print("deu erro arvore cheia")
+            #                 else:                              #valor é maior que 2 nó
+            #                     if self.active[8][0] == False:       
+            #                         self.active[8] = True, self.add[1]
+            #                     else: 
+            #                         print("deu erro arvore cheia")
                                     
-                    else:             #1º nó a esquerda ja existe e o valor inserido é maior
-                        if self.active[4][0] == False: 
-                            self.active[4] = True, self.add[1]    
-                        else:
-                            if self.add[1] < self.active[4][1]:
-                                if self.active[9][0] == False:       
-                                    self.active[9] = True, self.add[1]
-                                else:
-                                    print("deu erro arvore cheia")
-                            else: 
-                                if self.active[10][0] == False:       
-                                    self.active[10] = True, self.add[1]
-                                else:
-                                    print("deu erro arvore cheia")
+            #         else:             #1º nó a esquerda ja existe e o valor inserido é maior
+            #             if self.active[4][0] == False: 
+            #                 self.active[4] = True, self.add[1]    
+            #             else:
+            #                 if self.add[1] < self.active[4][1]:
+            #                     if self.active[9][0] == False:       
+            #                         self.active[9] = True, self.add[1]
+            #                     else:
+            #                         print("deu erro arvore cheia")
+            #                 else: 
+            #                     if self.active[10][0] == False:       
+            #                         self.active[10] = True, self.add[1]
+            #                     else:
+            #                         print("deu erro arvore cheia")
                         
-            else:                #valor inserido maior que a raiz
-                if self.active[2][0] == False:
-                    self.active[2]= True, self.add[1]
-                else:
-                    if self.add[1] < self.active[2][1]:       #valor é menor que o primeiro nó a direita
-                        if self.active[5][0] == False:      
-                            self.active[5]= True, self.add[1]
+            # else:                #valor inserido maior que a raiz
+            #     if self.active[2][0] == False:
+            #         self.active[2]= True, self.add[1]
+            #     else:
+            #         if self.add[1] < self.active[2][1]:       #valor é menor que o primeiro nó a direita
+            #             if self.active[5][0] == False:      
+            #                 self.active[5]= True, self.add[1]
                             
-                        else:                                 # nó a esquerda do 2 nó ja existe
-                            if self.add[1] < self.active[5][1]:
-                                if self.active[11][0] == False:
-                                    self.active[11] = True, self.add[1]
-                                else:
-                                    print("deu erro moral tree cheia!")
-                            else:
-                                if self.active[12][0] == False:
-                                    self.active[12] = True, self.add[1]
-                                else:
-                                    print("deu erro moral tree cheia!")
+            #             else:                                 # nó a esquerda do 2 nó ja existe
+            #                 if self.add[1] < self.active[5][1]:
+            #                     if self.active[11][0] == False:
+            #                         self.active[11] = True, self.add[1]
+            #                     else:
+            #                         print("deu erro moral tree cheia!")
+            #                 else:
+            #                     if self.active[12][0] == False:
+            #                         self.active[12] = True, self.add[1]
+            #                     else:
+            #                         print("deu erro moral tree cheia!")
                         
-                    else:     #valor é maior que o 1 nó a esquerda       
-                        if self.active[6][0] == False:      
-                            self.active[6] = True, self.add[1]
+            #         else:     #valor é maior que o 1 nó a esquerda       
+            #             if self.active[6][0] == False:      
+            #                 self.active[6] = True, self.add[1]
                             
-                        else:
-                            if self.add[1] < self.active[6][1]:
-                                if self.active[13][0] == False:
-                                    self.active[13] = True, self.add[1]
-                                else:
-                                    print("deu erro moral tree cheia!")
-                            else:
-                                if self.active[14][0] == False:
-                                    self.active[14][0] = True, self.add[1]
-                                else:
-                                    print("deu erro moral tree cheia!")
+            #             else:
+            #                 if self.add[1] < self.active[6][1]:
+            #                     if self.active[13][0] == False:
+            #                         self.active[13] = True, self.add[1]
+            #                     else:
+            #                         print("deu erro moral tree cheia!")
+            #                 else:
+            #                     if self.active[14][0] == False:
+            #                         self.active[14][0] = True, self.add[1]
+            #                     else:
+            #                         print("deu erro moral tree cheia!")
             
