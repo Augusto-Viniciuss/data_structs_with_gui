@@ -15,7 +15,7 @@ class Tree_():
         self.node_positions = [[400, 200], [225, 275], [575, 275], [150, 350], [300, 350], 
                                [500, 350], [650, 350], [115, 425], [185, 425], [265, 425],
                                [335, 425], [465, 425], [535, 425], [615, 425], [685,425]]
-        self.add = [None,0]
+        self.add = [None, 0]
         self.entered_first = 0
         self.active = [[False,0], [False,0], [False,0], [False,0], [False,0], [False,0], [False,0],
                        [False,0], [False,0], [False,0], [False,0], [False,0], [False,0], [False,0],
@@ -38,7 +38,7 @@ class Tree_():
 
             if self.add[0] == "add":
                 self.define_flags_add()
-                self.add[0] = ""
+                self.add[0] = None
                         
                    
 
@@ -79,11 +79,11 @@ class Tree_():
                 mouse_position = pygame.mouse.get_pos() 
     
                 #this is referent to the "send" button of "INSERIR" 
-                if self.wm.collide_point("imgs/enviar.png", 200, 725, mouse_position):
+                if self.wm.collide_point("imgs/enviar.png", 200, 500, mouse_position):
     
                     if self.input_box1.text != '':   #if the user filled the box with element
                         self.tree.insert(int(self.input_box1.text))        #inserindo elemento
-                        self.add = "add", int(self.input_box1.text)
+                        self.add = ["add", int(self.input_box1.text)]
                         
                         
                 
@@ -114,7 +114,7 @@ class Tree_():
         self.wm.add_img("imgs/caminhamento.png", 600, 630)  
         self.wm.add_img("imgs/elemento.png", 75, 675)  
         
-        self.wm.add_img("imgs/enviar2.png", 200, 725)  #inserir button
+        self.wm.add_img("imgs/enviar2.png", 200, 500)  #inserir button          ycerto= 725
         self.wm.add_img("imgs/enviar2.png", 375, 725)  #busca button
         self.wm.add_img("imgs/preordem.png", 600, 675)  #caminhamento button
         self.wm.add_img("imgs/inordem.png", 600, 715)  #caminhamento button
@@ -135,15 +135,15 @@ class Tree_():
             if self.add[1] < self.active[0][1]:      #raiz existe e o valor a ser inserido é menor que o nó raiz
                 if self.active[1][0] == False:
                     self.active[1] = True, self.add[1]
-            #     else:
-            #         if self.add[1] < self.active[1][1]:      #1º nó a esquerda ja existe e o valor inserido é menor
-            #             if self.active[3][0] == False:       
-            #                 self.active[3] = True, self.add[1]
-            #             else:                                #2 nó a esquerda ja existe
-            #                 if self.add[1] < self.active[3][1]:  #valor é menor que o 2 nó
-            #                     if self.active[7][0] == False:       
+            else:
+                if self.add[1] < self.active[1][1]:      #1º nó a esquerda ja existe e o valor inserido é menor
+                    if self.active[3][0] == False:       
+                        self.active[3] = True, self.add[1]
+            #           else:                                #2 nó a esquerda ja existe
+            #               if self.add[1] < self.active[3][1]:  #valor é menor que o 2 nó
+            #                   if self.active[7][0] == False:       
             #                         self.active[7] = True, self.add[1]
-            #                     else:
+            #                   else:
             #                         print("deu erro arvore cheia")
             #                 else:                              #valor é maior que 2 nó
             #                     if self.active[8][0] == False:       
