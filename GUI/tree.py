@@ -114,7 +114,7 @@ class Tree_():
         self.wm.add_img("imgs/caminhamento.png", 600, 630)  
         self.wm.add_img("imgs/elemento.png", 75, 675)  
         
-        self.wm.add_img("imgs/enviar2.png", 200, 500)  #inserir button          ycerto= 725
+        self.wm.add_img("imgs/enviar2.png", 200, 500)  #inserir button          **************ycerto= 725
         self.wm.add_img("imgs/enviar2.png", 375, 725)  #busca button
         self.wm.add_img("imgs/preordem.png", 600, 675)  #caminhamento button
         self.wm.add_img("imgs/inordem.png", 600, 715)  #caminhamento button
@@ -135,36 +135,36 @@ class Tree_():
             if self.add[1] < self.active[0][1]:      #raiz existe e o valor a ser inserido é menor que o nó raiz
                 if self.active[1][0] == False:
                     self.active[1] = True, self.add[1]
-            else:
-                if self.add[1] < self.active[1][1]:      #1º nó a esquerda ja existe e o valor inserido é menor
-                    if self.active[3][0] == False:       
-                        self.active[3] = True, self.add[1]
-            #           else:                                #2 nó a esquerda ja existe
-            #               if self.add[1] < self.active[3][1]:  #valor é menor que o 2 nó
-            #                   if self.active[7][0] == False:       
-            #                         self.active[7] = True, self.add[1]
-            #                   else:
-            #                         print("deu erro arvore cheia")
-            #                 else:                              #valor é maior que 2 nó
-            #                     if self.active[8][0] == False:       
-            #                         self.active[8] = True, self.add[1]
-            #                     else: 
-            #                         print("deu erro arvore cheia")
-                                    
-            #         else:             #1º nó a esquerda ja existe e o valor inserido é maior
-            #             if self.active[4][0] == False: 
-            #                 self.active[4] = True, self.add[1]    
-            #             else:
-            #                 if self.add[1] < self.active[4][1]:
-            #                     if self.active[9][0] == False:       
-            #                         self.active[9] = True, self.add[1]
-            #                     else:
-            #                         print("deu erro arvore cheia")
-            #                 else: 
-            #                     if self.active[10][0] == False:       
-            #                         self.active[10] = True, self.add[1]
-            #                     else:
-            #                         print("deu erro arvore cheia")
+                else:
+                    if self.add[1] < self.active[1][1]:      #1º nó a esquerda ja existe e o valor inserido é menor
+                        if self.active[3][0] == False:       
+                                self.active[3] = True, self.add[1]
+                        else:                                #2 nó a esquerda ja existe
+                            if self.add[1] < self.active[3][1]:  #valor é menor que o 2 nó
+                                if self.active[7][0] == False:       
+                                        self.active[7] = True, self.add[1]
+                                else:
+                                        print("deu erro arvore cheia")
+                            else:                              #valor é maior que 2 nó
+                                if self.active[8][0] == False:       
+                                    self.active[8] = True, self.add[1]
+                                else: 
+                                    print("deu erro arvore cheia")
+                                        
+                    else:             #1º nó a esquerda ja existe e o valor inserido é maior
+                        if self.active[4][0] == False: 
+                            self.active[4] = True, self.add[1]    
+                        else:
+                            if self.add[1] < self.active[4][1]:
+                                if self.active[9][0] == False:       
+                                    self.active[9] = True, self.add[1]
+                                else:
+                                    print("deu erro arvore cheia")
+                            else: 
+                                if self.active[10][0] == False:       
+                                    self.active[10] = True, self.add[1]
+                                else:
+                                    print("deu erro arvore cheia")
                         
             # else:                #valor inserido maior que a raiz
             #     if self.active[2][0] == False:
