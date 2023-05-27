@@ -16,6 +16,7 @@ class Tree_():
                                [500, 350], [650, 350], [115, 425], [185, 425], [265, 425],
                                [335, 425], [465, 425], [535, 425], [615, 425], [685,425]]
         self.add = [None, 0]
+        self.fetch = [None, 0]
         self.entered_first = 0
         self.active = [[False,0], [False,0], [False,0], [False,0], [False,0], [False,0], [False,0],
                        [False,0], [False,0], [False,0], [False,0], [False,0], [False,0], [False,0],
@@ -34,13 +35,19 @@ class Tree_():
             if self.flag_input == "menu" or self.flag_input == "quit":
                 return self.flag_input
 
-            self.print_static_imgs()
-
-            if self.add[0] == "add":
+        
+            elif self.add[0] == "add":
                 self.define_flags_add()
                 self.add[0] = None
                         
-                   
+            elif self.fetch[0] == "fetch":
+                for i in range(len(self.active)):
+                    if self.active[i][0] == True:
+                        if self.active[i][1] == self.fetch[1]:      #if the element is equal to the searched
+                            self.wm.draw_circle_with_text(self.node_positions[i][0],self.node_positions[i][1] , 24, self.wm.BLUE, 1, str(self.active[i][1]), 20)
+                        else:
+                            self.wm.draw_circle_with_text(self.node_positions[i][0],self.node_positions[i][1] , 24, self.wm.YELLOW, 1, str(self.active[i][1]), 20)
+                
 
             # self.wm.draw_circle_with_text(self.node_positions[0][0],self.node_positions[0][1] , 24, self.wm.WHITE, 1, "1", 20)  
             # self.wm.draw_circle_with_text(self.node_positions[1][0],self.node_positions[1][1] , 24, self.wm.WHITE, 1, "2", 20)
@@ -57,7 +64,8 @@ class Tree_():
             # self.wm.draw_circle_with_text(self.node_positions[12][0],self.node_positions[12][1] , 24, self.wm.WHITE, 1, "13", 20)
             # self.wm.draw_circle_with_text(self.node_positions[13][0],self.node_positions[13][1] , 24, self.wm.WHITE, 1, "14", 20)
             # self.wm.draw_circle_with_text(self.node_positions[14][0],self.node_positions[14][1] , 24, self.wm.WHITE, 1, "15", 20)
-
+            self.print_static_imgs()
+            
             for i in range(len(self.active)):
                 if self.active[i][0] == True: 
                     self.wm.draw_circle_with_text(self.node_positions[i][0],self.node_positions[i][1] , 24, self.wm.WHITE, 1, str(self.active[i][1]), 20)  
@@ -79,19 +87,21 @@ class Tree_():
                 mouse_position = pygame.mouse.get_pos() 
     
                 #this is referent to the "send" button of "INSERIR" 
-                if self.wm.collide_point("imgs/enviar.png", 200, 725, mouse_position):
+                if self.wm.collide_point("imgs/enviar.png", 200, 500, mouse_position):
     
                     if self.input_box1.text != '':   #if the user filled the box with element
                         self.tree.insert(int(self.input_box1.text))        #inserindo elemento
                         self.add = ["add", int(self.input_box1.text)]
                         
-                        
-                
                 #this is referent to the "send" button of "BUSCA" 
-                elif self.wm.collide_point("imgs/enviar.png",375, 725, mouse_position):
-                    
+                elif self.wm.collide_point("imgs/enviar.png",375, 500, mouse_position):
+
                     if self.input_box2.text != '':   #if the user filled the box with element
-                        print("busca")
+                                                
+                        if self.tree.search_element(int(self.input_box2.text)) == True:      #if the element was founded
+                            self.fetch = ["fetch", int(self.input_box2.text)]
+                        else:         
+                            print("deu erro total")       
                                                
                 #this is referent to the "send" button of "CAMINHAMENTO"    
                 elif self.wm.collide_point("imgs/preordem.png",600, 675, mouse_position):     #first button (pre ordem)
