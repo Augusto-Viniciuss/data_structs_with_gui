@@ -9,7 +9,6 @@ tree.insert(10)
 tree.insert(5)
 tree.insert(40)
 tree.insert(60)
-tree.insert(55)
 
 return_f = tree.search_element(10)
 
