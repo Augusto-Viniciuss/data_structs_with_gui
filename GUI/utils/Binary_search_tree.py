@@ -69,7 +69,7 @@ class Binary_search_tree:
                 self.aux_count += 1
 
             if node.get_previous_node() != None:
-                self.show_tree(node.get_previous_node(), walking_type)
+                self.walking(node.get_previous_node(), walking_type)
 
             if walking_type == "infix":
                 print(node.get_value())
@@ -77,7 +77,7 @@ class Binary_search_tree:
                 self.aux_count += 1
 
             if node.get_next_node() != None:
-                self.show_tree(node.get_next_node(), walking_type)
+                self.walking(node.get_next_node(), walking_type)
 
             if walking_type == "suffix":
                 print(node.get_value())
