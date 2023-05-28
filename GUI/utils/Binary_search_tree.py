@@ -52,6 +52,7 @@ class Binary_search_tree:
         return True
 
     def get_walkin_array(self, walking_type = "prefix"):
+        self.aux_count = 0
         self.walking(None, walking_type)
         return self.walking_values
 
@@ -61,7 +62,6 @@ class Binary_search_tree:
         else:
             if node == None:
                 node = self.root
-                self.aux_count = 0  
 
             if walking_type == "prefix":
                 print(node.get_value())
