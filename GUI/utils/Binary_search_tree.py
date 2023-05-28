@@ -3,10 +3,14 @@ from .Node import Node
 class Binary_search_tree:
     def __init__(self):
         self.root = None
-        self.empty = True
+        self.aux_count = 0
+        self.walking_values = [None] * 15 
 
     def is_empty(self):
-        return self.empty
+        if self.root == None:
+            return True
+        else:
+            return False
 
     def search_element(self, value):
         if self.is_empty():
@@ -47,24 +51,35 @@ class Binary_search_tree:
 
         return True
 
-    def show_tree(self, node = None, walking_type = "prefix"):
+    def get_walkin_array(self, walking_type = "prefix"):
+        self.walking(None, walking_type)
+        return self.walking_values
+
+    def walking(self, node = None, walking_type = "prefix"):
         if self.is_empty():
             return
         else:
             if node == None:
                 node = self.root
+                self.aux_count = 0  
 
             if walking_type == "prefix":
                 print(node.get_value())
+                self.walking_values[self.aux_count] = node.get_value()
+                self.aux_count += 1
 
             if node.get_previous_node() != None:
                 self.show_tree(node.get_previous_node(), walking_type)
 
             if walking_type == "infix":
                 print(node.get_value())
+                self.walking_values[self.aux_count] = node.get_value()
+                self.aux_count += 1
 
             if node.get_next_node() != None:
                 self.show_tree(node.get_next_node(), walking_type)
 
             if walking_type == "suffix":
                 print(node.get_value())
+                self.walking_values[self.aux_count] = node.get_value()
+                self.aux_count += 1
