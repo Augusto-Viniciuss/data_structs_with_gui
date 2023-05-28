@@ -53,16 +53,13 @@ class Binary_search_tree:
 
     def get_walkin_array(self, walking_type = "prefix"):
         self.aux_count = 0
-        self.walking(None, walking_type)
+        self.walking(self.root, walking_type)
         return self.walking_values
 
     def walking(self, node = None, walking_type = "prefix"):
         if self.is_empty():
             return
         else:
-            if node == None:
-                node = self.root
-
             if walking_type == "prefix":
                 print(node.get_value())
                 self.walking_values[self.aux_count] = node.get_value()
