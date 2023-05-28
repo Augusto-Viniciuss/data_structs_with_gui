@@ -15,6 +15,14 @@ class Tree_():
         self.node_positions = [[400, 200], [225, 275], [575, 275], [150, 350], [300, 350], 
                                [500, 350], [650, 350], [115, 425], [185, 425], [265, 425],
                                [335, 425], [465, 425], [535, 425], [615, 425], [685,425]]
+                
+        self.arrow_positions = [[pygame.Vector2(365, 215), pygame.Vector2(255, 260)], [pygame.Vector2(435, 215), pygame.Vector2(545, 260)],
+                                [pygame.Vector2(200, 300), pygame.Vector2(175, 325)], [pygame.Vector2(250, 300), pygame.Vector2(275, 325)],
+                                [pygame.Vector2(550, 300), pygame.Vector2(525, 325)], [pygame.Vector2(600, 300), pygame.Vector2(625, 325)],
+                                [pygame.Vector2(130, 375), pygame.Vector2(120, 395)], [pygame.Vector2(170, 375), pygame.Vector2(180, 395)],
+                                [pygame.Vector2(280, 375), pygame.Vector2(270, 395)], [pygame.Vector2(320, 375), pygame.Vector2(330, 395)],
+                                [pygame.Vector2(480, 375), pygame.Vector2(470, 395)], [pygame.Vector2(520, 375), pygame.Vector2(530, 395)],
+                                [pygame.Vector2(630, 375), pygame.Vector2(620, 395)], [pygame.Vector2(670, 375), pygame.Vector2(680, 395)]]
         self.add = [None, 0]
         self.fetch = [None, 0]
         self.entered_first = 0
@@ -23,7 +31,9 @@ class Tree_():
                        [False,0]]         
         self.input_box1 = InputBox(140, 660)
         self.input_box2 = InputBox(315, 660)
-        self.box_side = 50
+        self.radius = 24
+        self.array = None
+        self.walk = [None] 
 
     def show_display(self):
 
@@ -32,10 +42,11 @@ class Tree_():
 
             self.flag_input = self.check_input()
 
+            self.print_static_imgs()
+            
             if self.flag_input == "menu" or self.flag_input == "quit":
                 return self.flag_input
-
-        
+            
             elif self.add[0] == "add":
                 self.define_flags_add()
                 self.add[0] = None
@@ -48,30 +59,24 @@ class Tree_():
                         else:
                             self.wm.draw_circle_with_text(self.node_positions[i][0],self.node_positions[i][1] , 24, self.wm.YELLOW, 1, str(self.active[i][1]), 20)
                 
-
-            # self.wm.draw_circle_with_text(self.node_positions[0][0],self.node_positions[0][1] , 24, self.wm.WHITE, 1, "1", 20)  
-            # self.wm.draw_circle_with_text(self.node_positions[1][0],self.node_positions[1][1] , 24, self.wm.WHITE, 1, "2", 20)
-            # self.wm.draw_circle_with_text(self.node_positions[2][0],self.node_positions[2][1] , 24, self.wm.WHITE, 1, "3", 20)
-            # self.wm.draw_circle_with_text(self.node_positions[3][0],self.node_positions[3][1] , 24, self.wm.WHITE, 1, "4", 20)
-            # self.wm.draw_circle_with_text(self.node_positions[4][0],self.node_positions[4][1] , 24, self.wm.WHITE, 1, "5", 20)
-            # self.wm.draw_circle_with_text(self.node_positions[5][0],self.node_positions[5][1] , 24, self.wm.WHITE, 1, "6", 20)
-            # self.wm.draw_circle_with_text(self.node_positions[6][0],self.node_positions[6][1] , 24, self.wm.WHITE, 1, "7", 20)
-            # self.wm.draw_circle_with_text(self.node_positions[7][0],self.node_positions[7][1] , 24, self.wm.WHITE, 1, "8", 20)
-            # self.wm.draw_circle_with_text(self.node_positions[8][0],self.node_positions[8][1] , 24, self.wm.WHITE, 1, "9", 20)
-            # self.wm.draw_circle_with_text(self.node_positions[9][0],self.node_positions[9][1] , 24, self.wm.WHITE, 1, "10", 20)
-            # self.wm.draw_circle_with_text(self.node_positions[10][0],self.node_positions[10][1] , 24, self.wm.WHITE, 1, "11", 20)
-            # self.wm.draw_circle_with_text(self.node_positions[11][0],self.node_positions[11][1] , 24, self.wm.WHITE, 1, "12", 20)
-            # self.wm.draw_circle_with_text(self.node_positions[12][0],self.node_positions[12][1] , 24, self.wm.WHITE, 1, "13", 20)
-            # self.wm.draw_circle_with_text(self.node_positions[13][0],self.node_positions[13][1] , 24, self.wm.WHITE, 1, "14", 20)
-            # self.wm.draw_circle_with_text(self.node_positions[14][0],self.node_positions[14][1] , 24, self.wm.WHITE, 1, "15", 20)
-            self.print_static_imgs()
+            elif self.walk == "caminhamento":
+                for i in range(15):
+                    if(self.array[i]!= None):
+                        print(self.array[i])
+                        self.wm.draw_text(str(self.array[i]), 20, 50+(i*50), 550, self.wm.WHITE)
+            
             
             for i in range(len(self.active)):
                 if self.active[i][0] == True: 
                     self.wm.draw_circle_with_text(self.node_positions[i][0],self.node_positions[i][1] , 24, self.wm.WHITE, 1, str(self.active[i][1]), 20)  
+                    
+            
             
             
             self.wm.blit_screen()
+            if(self.walk=="caminhamento"):
+                pygame.time.delay(1700)
+                self.walk = None
 
     def check_input(self):
 
@@ -87,14 +92,14 @@ class Tree_():
                 mouse_position = pygame.mouse.get_pos() 
     
                 #this is referent to the "send" button of "INSERIR" 
-                if self.wm.collide_point("imgs/enviar.png", 200, 500, mouse_position):
+                if self.wm.collide_point("imgs/enviar.png", 200, 725, mouse_position):
     
                     if self.input_box1.text != '':   #if the user filled the box with element
                         self.tree.insert(int(self.input_box1.text))        #inserindo elemento
                         self.add = ["add", int(self.input_box1.text)]
                         
                 #this is referent to the "send" button of "BUSCA" 
-                elif self.wm.collide_point("imgs/enviar.png",375, 500, mouse_position):
+                elif self.wm.collide_point("imgs/enviar.png",375, 725, mouse_position):
 
                     if self.input_box2.text != '':   #if the user filled the box with element
                                                 
@@ -105,13 +110,21 @@ class Tree_():
                                                
                 #this is referent to the "send" button of "CAMINHAMENTO"    
                 elif self.wm.collide_point("imgs/preordem.png",600, 675, mouse_position):     #first button (pre ordem)
-                    print("caminhamento1")
+                    #print("caminhamento1")
+                    print("opa")
+                    self.array = self.tree.get_walkin_array("prefix")
+                    self.walk = "caminhamento"
+
 
                 elif self.wm.collide_point("imgs/inordem.png",600, 715, mouse_position):      #second button (in ordem)
                     print("caminhamento2")
+                    self.array = self.tree.get_walkin_array("infix")
+                    self.walk = "caminhamento"
                 
                 elif self.wm.collide_point("imgs/posordem.png",600, 755, mouse_position):     #third button (pos ordem)
                     print("caminhamento3")
+                    self.array = self.tree.get_walkin_array("suffix")
+                    self.walk = "caminhamento"
             
             self.input_box1.handle_event(event)
             self.input_box2.handle_event(event)
@@ -132,10 +145,14 @@ class Tree_():
         
         self.input_box1.draw(self.wm.display)
         self.input_box2.draw(self.wm.display)
+        self.wm.draw_rect(25, 525, 750, 50, self.wm.WHITE, 1)
+        
 
-        #tem que trocar por circulozinhos!!!!
-        #for i in range(15):
-            #self.wm.draw_rect(25+(i*50), 525, self.box_side, self.box_side, self.wm.WHITE, 1)
+        
+        # for i in range(15):
+        #     self.wm.draw_text(str(i+1) , 20, 50+(i*50), 550, self.wm.WHITE)
+        # # for i in range(14):
+        # #     self.wm.draw_text(" - " , 20, 75+(i*50), 550, self.wm.WHITE)
             
     def define_flags_add(self):
         
