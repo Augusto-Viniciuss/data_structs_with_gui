@@ -1,15 +1,15 @@
-from utils.Stack import Stack
+from utils.Binary_search_tree import Binary_search_tree
 
-common_queue = Stack()
-
-
-
-common_queue.push(1)
-common_queue.push(2)
-common_queue.push(3)
-randommm = common_queue.get_size()
+tree = Binary_search_tree()
 
 
-for i in range(randommm):
-    print(common_queue.listelements(i))
+tree.insert(30)
+tree.insert(20)
+tree.insert(10)
+tree.insert(5)
+tree.insert(40)
+tree.insert(60)
 
+return_f = tree.search_element(10)
+
+print(return_f)
