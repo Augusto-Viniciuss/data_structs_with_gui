@@ -47,6 +47,8 @@ class Binary_search_tree:
                         break
                     else:
                         aux_node = aux_node.get_next_node()
+                elif value == aux_node.get_value():
+                    return False
 
         return True
 
