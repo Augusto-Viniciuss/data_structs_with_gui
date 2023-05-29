@@ -25,15 +25,17 @@ class Tree_():
                                 [pygame.Vector2(630, 375), pygame.Vector2(620, 395)], [pygame.Vector2(670, 375), pygame.Vector2(680, 395)]]
         self.add = [None, 0]
         self.fetch = [None, 0]
-        self.entered_first = 0
+        self.walk = [None] 
+        self.array_fetch = []
+        self.array_walk = None
         self.active = [[False,0], [False,0], [False,0], [False,0], [False,0], [False,0], [False,0],
                        [False,0], [False,0], [False,0], [False,0], [False,0], [False,0], [False,0],
                        [False,0]]         
         self.input_box1 = InputBox(140, 660)
         self.input_box2 = InputBox(315, 660)
         self.radius = 24
-        self.array = None
-        self.walk = [None] 
+        
+        
 
     def show_display(self):
 
@@ -41,8 +43,6 @@ class Tree_():
         while running:
 
             self.flag_input = self.check_input()
-
-            self.print_static_imgs()
             
             if self.flag_input == "menu" or self.flag_input == "quit":
                 return self.flag_input
@@ -52,31 +52,46 @@ class Tree_():
                 self.add[0] = None
                         
             elif self.fetch[0] == "fetch":
-                for i in range(len(self.active)):
-                    if self.active[i][0] == True:
-                        if self.active[i][1] == self.fetch[1]:      #if the element is equal to the searched
-                            self.wm.draw_circle_with_text(self.node_positions[i][0],self.node_positions[i][1] , 24, self.wm.BLUE, 1, str(self.active[i][1]), 20)
-                        else:
-                            self.wm.draw_circle_with_text(self.node_positions[i][0],self.node_positions[i][1] , 24, self.wm.YELLOW, 1, str(self.active[i][1]), 20)
+                self.define_flags_fetch()
+                self.fetch[0] = None
                 
-            elif self.walk == "caminhamento":
-                for i in range(15):
-                    if(self.array[i]!= None):
-                        print(self.array[i])
-                        self.wm.draw_text(str(self.array[i]), 20, 50+(i*50), 550, self.wm.WHITE)
-            
-            
-            for i in range(len(self.active)):
-                if self.active[i][0] == True: 
-                    self.wm.draw_circle_with_text(self.node_positions[i][0],self.node_positions[i][1] , 24, self.wm.WHITE, 1, str(self.active[i][1]), 20)  
+                for i in range(len(self.array_fetch)):
+                
+                    if i == len(self.array_fetch)-1:      #if is the last element
+                        self.wm.draw_circle(self.node_positions[self.array_fetch[i]][0],self.node_positions[self.array_fetch[i]][1] , 24, self.wm.BLUE, 1)
+                    else:
+                        self.wm.draw_circle(self.node_positions[self.array_fetch[i]][0],self.node_positions[self.array_fetch[i]][1] , 24, self.wm.YELLOW, 1)
+                        
+                    self.wm.blit_screen()
+                    pygame.time.delay(500)
                     
+                self.array_fetch = []    #restarting the arrayfetch
+                
+                        
+            elif self.walk == "walk":
+                for i in range(15):                              #printing the walking by the tree
+                    if(self.array_walk[i]!= None):
+                        if i != 0:      #if it isnt the first element to print the "-"
+                            self.wm.draw_text("-", 20, 22+(i*50), 550, self.wm.WHITE)
+                            
+                        self.wm.draw_text(str(self.array_walk[i]), 20, 50+(i*50), 550, self.wm.WHITE) #printing the number of the walk
+                
+                self.wm.blit_screen()
+                pygame.time.delay(2100)
+                self.walk = None
             
+            self.print_static_imgs()
             
+            for i in range(len(self.active)):       #printing the tree
+                if self.active[i][0] == True: 
+                    if i != 0:
+                        self.wm.draw_arrow(self.arrow_positions[i-1][0], self.arrow_positions[i-1][1], self.wm.WHITE, 4, 10, 8)
+                        
+                    self.wm.draw_circle_with_text(self.node_positions[i][0],self.node_positions[i][1] , 24, self.wm.WHITE, 1, str(self.active[i][1]), 20)  
+                        
             
             self.wm.blit_screen()
-            if(self.walk=="caminhamento"):
-                pygame.time.delay(1700)
-                self.walk = None
+            
 
     def check_input(self):
 
@@ -110,21 +125,17 @@ class Tree_():
                                                
                 #this is referent to the "send" button of "CAMINHAMENTO"    
                 elif self.wm.collide_point("imgs/preordem.png",600, 675, mouse_position):     #first button (pre ordem)
-                    #print("caminhamento1")
-                    print("opa")
-                    self.array = self.tree.get_walkin_array("prefix")
-                    self.walk = "caminhamento"
+                    self.array_walk = self.tree.get_walkin_array("prefix")
+                    self.walk = "walk"
 
 
                 elif self.wm.collide_point("imgs/inordem.png",600, 715, mouse_position):      #second button (in ordem)
-                    print("caminhamento2")
-                    self.array = self.tree.get_walkin_array("infix")
-                    self.walk = "caminhamento"
+                    self.array_walk = self.tree.get_walkin_array("infix")
+                    self.walk = "walk"
                 
                 elif self.wm.collide_point("imgs/posordem.png",600, 755, mouse_position):     #third button (pos ordem)
-                    print("caminhamento3")
-                    self.array = self.tree.get_walkin_array("suffix")
-                    self.walk = "caminhamento"
+                    self.array_walk = self.tree.get_walkin_array("suffix")
+                    self.walk = "walk"
             
             self.input_box1.handle_event(event)
             self.input_box2.handle_event(event)
@@ -147,12 +158,6 @@ class Tree_():
         self.input_box2.draw(self.wm.display)
         self.wm.draw_rect(25, 525, 750, 50, self.wm.WHITE, 1)
         
-
-        
-        # for i in range(15):
-        #     self.wm.draw_text(str(i+1) , 20, 50+(i*50), 550, self.wm.WHITE)
-        # # for i in range(14):
-        # #     self.wm.draw_text(" - " , 20, 75+(i*50), 550, self.wm.WHITE)
             
     def define_flags_add(self):
         
@@ -229,3 +234,98 @@ class Tree_():
                                 else:
                                     print("deu erro  tree cheia!")
             
+    def define_flags_fetch(self):
+        
+        self.array_fetch.append(0)            #pushing in the array the position
+        if self.active[0][0] == True and self.active[0][1] == self.fetch[1]:        #se o nó raiz nao tiver valor ainda
+            return 0                                                                #node founded
+        else:                                 
+            if self.fetch[1] < self.active[0][1]:
+
+                self.array_fetch.append(1)    #pushing the position
+                if self.active[1][0] == True and self.active[1][1] == self.fetch[1]:
+                    return 0                                                        #node founded
+                else:
+                    if self.fetch[1] < self.active[1][1]: 
+                        
+                        self.array_fetch.append(3)    #pushing the position  
+                        if self.active[3][0] == True and self.active[3][1] == self.fetch[1]:       
+                            return 0
+                        else:                                
+                            if self.fetch[1] < self.active[3][1]:  
+                                
+                                self.array_fetch.append(7)    #pushing the position  
+                                if self.active[7][0] == True and self.active[7][1] == self.fetch[1]:
+                                    return 0
+                                else:
+                                    print("deu erro busca")
+                            else:                              
+                                self.array_fetch.append(8)    #pushing the position  
+                                if self.active[8][0] == True and self.active[8][1] == self.fetch[1]:       
+                                    return 0
+                                else: 
+                                    print("deu erro busca")
+                                        
+                    else:     
+                        self.array_fetch.append(4)    #pushing the position  
+                        if self.active[4][0] == True and self.active[4][1] == self.fetch[1]:
+                            return 0 
+                        else:
+                            if self.fetch[1] < self.active[4][1]:
+                                
+                                self.array_fetch.append(9)    #pushing the position  
+                                if self.active[9][0] == True and self.active[9][1] == self.fetch[1]:       
+                                    return 0;
+                                else:
+                                    print("deu erro busca")
+                            else: 
+                                self.array_fetch.append(10)    #pushing the position  
+                                if self.active[10][0] == True and self.active[10][1] == self.fetch[1]:
+                                    return 0;
+                                else:
+                                    print("deu erro busca")
+                        
+            else:                #valor inserido maior que a raiz
+                self.array_fetch.append(2)    #pushing the position  
+                if self.active[2][0] == True and self.active[2][1] == self.fetch[1]:
+                    return 0
+                else:
+                    if self.fetch[1] < self.active[2][1]:       #valor é menor que o primeiro nó a direita
+                        
+                        self.array_fetch.append(5)    #pushing the position  
+                        if self.active[5][0] == True and self.active[5][1] == self.fetch[1]:
+                            return 0
+                        else:                                 # nó a esquerda do 2 nó ja existe
+                            if self.fetch[1] < self.active[5][1]:
+                                self.array_fetch.append(11)    #pushing the position  
+                                if self.active[11][0] == True and self.active[11][1] == self.fetch[1]:
+                                    return 0;
+                                else:
+                                    print("deu erro busca")
+                            else:
+                                self.array_fetch.append(12)    #pushing the position  
+                                if self.active[12][0] == True and self.active[12][1] == self.fetch[1]:
+                                    return 0;
+                                else:
+                                    print("deu erro busca")
+                        
+                    else:     #valor é maior que o 1 nó a esquerda   
+                        self.array_fetch.append(6)    #pushing the position      
+                        if self.active[6][0] == True and self.active[6][1] == self.fetch[1]:
+                            return 0
+                        
+                        else:
+                            if self.fetch[1] < self.active[6][1]:
+                                self.array_fetch.append(13)    #pushing the position  
+                                if self.active[13][0] == True and self.active[13][1] == self.fetch[1]:
+                                    return 0
+                                else:
+                                    print("deu erro busca!")
+                            else:
+                                self.array_fetch.append(14)    #pushing the position  
+                                if self.active[14][0] == True and self.active[14][1] == self.fetch[1]:
+                                    return 0
+                                else:
+                                    print("deu erro busca!")              
+                
+          
