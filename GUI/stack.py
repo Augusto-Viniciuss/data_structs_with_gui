@@ -23,7 +23,7 @@ class Stack_():
         self.mid_w, self.mid_h = self.wm.DISPLAY_W /2 , self.wm.DISPLAY_H/2 + 20
         self.square_w,self.square_h = 200, 50
         self.square_side, self.square_border = 70, 1
-        self.node_positions = [[self.mid_w, self.mid_h - 180],[self.mid_w, self.mid_h - 110],[self.mid_w, self.mid_h - 40],[self.mid_w, self.mid_h + 30],[self.mid_w, self.mid_h + 100],[self.mid_w, self.mid_h + 170],[self.mid_w, self.mid_h + 240],[self.mid_w, self.mid_h + 310],[self.mid_w, self.mid_h + 380],[self.mid_w, self.mid_h + 450]]
+        self.node_positions = [[self.mid_w, self.mid_h + 180],[self.mid_w, self.mid_h + 110],[self.mid_w, self.mid_h + 40],[self.mid_w, self.mid_h - 30],[self.mid_w, self.mid_h - 100],[self.mid_w, self.mid_h - 170],[self.mid_w, self.mid_h - 240],[self.mid_w, self.mid_h - 310],[self.mid_w, self.mid_h - 380],[self.mid_w, self.mid_h - 450]]
 
     def show_display(self):
       
@@ -35,7 +35,7 @@ class Stack_():
                 return self.flag_input
           
             if self.flag_input == "add":
-                self.wm.draw_circle_with_text(self.node_positions[self.add[0]-1][0], self.node_positions[self.add[0]-1][1] - 50, 20, self.wm.PURPLE, 1, str(self.add[1]), 17)
+                self.wm.draw_circle_with_text(self.node_positions[self.add[0]-1][0], self.node_positions[self.add[0]-1][1], 20, self.wm.PURPLE, 1, str(self.add[1]), 17)
 
                 #if self.add[0] != 1:
                     #self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.add[0]-1][0], self.node_positions[self.add[0]-1][1]- 24), pygame.Vector2(self.node_positions[self.add[0]-1][0], self.node_positions[self.add[0]-1][1]), self.wm.YELLOW, 4, 10, 8)
@@ -51,8 +51,8 @@ class Stack_():
             self.print_static_imgs()
            
             for i in range(self.list.qtd_elements):
-                text = self.list.get_element(i)
-                self.create_node(self.node_positions[i][0], self.node_positions[i][1]-40, str(text), self.wm.PURPLE, i)
+                text = self.list.get_element(self.list.qtd_elements - 1 - i)
+                self.create_node(self.node_positions[i][0], self.node_positions[i][1], str(text), self.wm.PURPLE, self.list.qtd_elements - 1 - i)
                        
             if self.error_add:  #error treatment
                 self.wm.draw_text("Erro ao inserir!", 16, 400, 85, self.wm.YELLOW)
