@@ -14,13 +14,13 @@ class Stack_():
         self.add = None
         self.remove = None
         self.buscar = None
-        self.wm.display = pygame.Surface((800, 900))
-        self.wm.window = pygame.display.set_mode(((800, 900)))
-        self.box_x, self.box_y = 140.5, 775.5
+        self.wm.display = pygame.Surface((800, 800))
+        self.wm.window = pygame.display.set_mode(((800, 800)))
+        self.box_x, self.box_y = 140.5, 680
         self.input_box1 = InputBox(self.box_x, self.box_y)
         self.spacing = 75
         self.error_add, self.error_remove, self.error_search = False, False, False
-        self.mid_w, self.mid_h = self.wm.DISPLAY_W /2 , self.wm.DISPLAY_H/2 + 60
+        self.mid_w, self.mid_h = self.wm.DISPLAY_W /2 , self.wm.DISPLAY_H/2 + 20
         self.square_w,self.square_h = 200, 50
         self.square_side, self.square_border = 70, 1
         self.node_positions = [[self.mid_w, self.mid_h - 180],[self.mid_w, self.mid_h - 110],[self.mid_w, self.mid_h - 40],[self.mid_w, self.mid_h + 30],[self.mid_w, self.mid_h + 100],[self.mid_w, self.mid_h + 170],[self.mid_w, self.mid_h + 240],[self.mid_w, self.mid_h + 310],[self.mid_w, self.mid_h + 380],[self.mid_w, self.mid_h + 450]]
@@ -35,7 +35,7 @@ class Stack_():
                 return self.flag_input
           
             if self.flag_input == "add":
-                self.wm.draw_circle_with_text(self.node_positions[self.add[0]-1][0], self.node_positions[self.add[0]-1][1] - 50, 24, self.wm.PURPLE, 1, str(self.add[1]), 20)
+                self.wm.draw_circle_with_text(self.node_positions[self.add[0]-1][0], self.node_positions[self.add[0]-1][1] - 50, 20, self.wm.PURPLE, 1, str(self.add[1]), 17)
 
                 #if self.add[0] != 1:
                     #self.wm.draw_arrow(pygame.Vector2(self.node_positions[self.add[0]-1][0], self.node_positions[self.add[0]-1][1]- 24), pygame.Vector2(self.node_positions[self.add[0]-1][0], self.node_positions[self.add[0]-1][1]), self.wm.YELLOW, 4, 10, 8)
@@ -44,7 +44,7 @@ class Stack_():
                 pygame.time.delay(700)
                 
             elif self.flag_input == "busca":
-                self.wm.draw_circle(self.node_positions[0][0], self.node_positions[0][1]-40, 24, self.wm.BLUE, 1)
+                self.wm.draw_circle(self.node_positions[0][0], self.node_positions[0][1]-40, 20, self.wm.BLUE, 1)
                 self.wm.blit_screen()   
                 pygame.time.delay(500)    
               
@@ -83,7 +83,7 @@ class Stack_():
                     mouse_position = pygame.mouse.get_pos() 
                     
                     #this is referent to the "send" button of "INSERIR" 
-                    if self.wm.collide_point("imgs/enviar2.png", 200, 840, mouse_position):
+                    if self.wm.collide_point("imgs/enviar2.png", 200, 740, mouse_position):
                         if self.input_box1.text != '':   #if the user filled the box with element
                             if self.list.qtd_elements < 9:    #if the queue didnt have 10 elem yet
                                 if self.list.push(int(self.input_box1.text)) == True:
@@ -97,7 +97,7 @@ class Stack_():
                                 self.error_add = True   
                     
                     #this is referent to the "send" button of "REMOVER" 
-                    elif self.wm.collide_point("imgs/enviar2.png",400, 840, mouse_position):
+                    elif self.wm.collide_point("imgs/enviar2.png",400, 720, mouse_position):
                             removed_value = self.list.pop()                          
                             if removed_value == None:     #if the position to be removed is invalid
                                 self.error_remove = True
@@ -107,7 +107,7 @@ class Stack_():
                                 self.remove = 1, self.list.get_top()
                                 return "remove"                        
                     #this is referent to the "send" button of "BUSCA"    
-                    elif self.wm.collide_point("imgs/enviar2.png",600, 840, mouse_position):
+                    elif self.wm.collide_point("imgs/enviar2.png",600, 720, mouse_position):
                         element = self.list.get_top()
                         if element == None:
                             self.error_search = True
@@ -117,22 +117,22 @@ class Stack_():
                             return "busca"
                      
     def create_node(self, posx, posy, text, color_text, node_index):
-        self.wm.draw_circle_with_text(posx, posy, 24, color_text, 1, str(text), 20)
+        self.wm.draw_circle_with_text(posx, posy, 20, color_text, 1, str(text), 17)
 
         if node_index < self.list.qtd_elements-1:
-            self.wm.draw_arrow(pygame.Vector2(posx, posy + 24), pygame.Vector2(posx, posy +48), self.wm.WHITE, 4, 10, 8)
+            self.wm.draw_arrow(pygame.Vector2(posx, posy + 24), pygame.Vector2(posx, posy +48), self.wm.WHITE, 4, 8, 6)
 
     def print_static_imgs(self):
        self.wm.display.fill(self.wm.BLACK)
        self.wm.add_img("imgs/stack.png", 400, 70)  # title
-       self.wm.add_img("imgs/inserir.png", 200, 750)  
-       self.wm.add_img("imgs/remover.png", 400, 780)  
-       self.wm.add_img("imgs/buscar.png", 600, 780) 
-       self.wm.add_img("imgs/elemento.png", 75, 775.5) 
+       self.wm.add_img("imgs/inserir.png", 200, 660)  
+       self.wm.add_img("imgs/remover.png", 400, 700)  
+       self.wm.add_img("imgs/buscar.png", 600, 700) 
+       self.wm.add_img("imgs/elemento.png", 75, 700) 
       
-       self.wm.add_img("imgs/enviar2.png", 200, 840)  #inserir button
-       self.wm.add_img("imgs/enviar2.png", 400, 840)  #remover button
-       self.wm.add_img("imgs/enviar2.png", 600, 840)  #consultar button
+       self.wm.add_img("imgs/enviar2.png", 200, 740)  #inserir button
+       self.wm.add_img("imgs/enviar2.png", 400, 740)  #remover button
+       self.wm.add_img("imgs/enviar2.png", 600, 740)  #consultar button
       
        self.input_box1.draw(self.wm.display)
       
