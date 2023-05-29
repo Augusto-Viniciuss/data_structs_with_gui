@@ -29,22 +29,21 @@ class Binary_search_tree:
             return False
 
     def insert(self, value):
-        if self.is_empty:
+        if self.is_empty():
             self.root = Node(value)
-            self.empty = False
         else:
             aux_node = self.root
             
             while True:
                 if value < aux_node.get_value():
                     if aux_node.get_previous_node() == None:
-                        aux_node.set_previous_node = Node(value)
+                        aux_node.set_previous_node(Node(value))
                         break
                     else:
                         aux_node = aux_node.get_previous_node()
                 elif value > aux_node.get_value():
                     if aux_node.get_next_node() == None:
-                        aux_node.set_next_node = Node(value)
+                        aux_node.set_next_node(Node(value))
                         break
                     else:
                         aux_node = aux_node.get_next_node()
