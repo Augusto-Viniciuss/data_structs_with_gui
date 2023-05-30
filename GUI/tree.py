@@ -34,7 +34,7 @@ class Tree_():
         self.input_box1 = InputBox(140, 660)
         self.input_box2 = InputBox(315, 660)
         self.radius = 24
-        
+        self.error_add, self.error_search = False, False
         
 
     def show_display(self):
@@ -47,9 +47,9 @@ class Tree_():
             if self.flag_input == "menu" or self.flag_input == "quit":
                 return self.flag_input
             
-            elif self.add[0] == "add":
-                self.define_flags_add()
-                self.add[0] = None
+            # elif self.add[0] == "add":
+            #     self.define_flags_add()
+            #     self.add[0] = None
                         
             elif self.fetch[0] == "fetch":
                 self.define_flags_fetch()
@@ -86,6 +86,12 @@ class Tree_():
             
             self.print_static_imgs()
             
+            if self.error_add:          #appear error on screen
+                self.wm.draw_text("Erro ao inserir!", 16, 400, 150, self.wm.YELLOW)
+            if self.error_search:
+                self.wm.draw_text("Erro ao buscar! Elemento inválido.", 16, 400, 150, self.wm.YELLOW)
+            
+            
             for i in range(len(self.active)):       #printing the tree
                 if self.active[i][0] == True: 
                     if i != 0:
@@ -95,6 +101,10 @@ class Tree_():
                         
             
             self.wm.blit_screen()
+            
+            if self.error_add != False or self.error_search != False:     #if exist some error
+                pygame.time.delay(1700)                                                                 
+                self.error_add, self.error_search = False, False
             
 
     def check_input(self):
@@ -114,8 +124,18 @@ class Tree_():
                 if self.wm.collide_point("imgs/enviar.png", 200, 725, mouse_position):
     
                     if self.input_box1.text != '':   #if the user filled the box with element
-                        self.tree.insert(int(self.input_box1.text))        #inserindo elemento
-                        self.add = ["add", int(self.input_box1.text)]
+                        self.add[1] = int(self.input_box1.text)
+                        
+                        if self.tree.search_element(int(self.input_box1.text)) == True:  #if the number to insert already exist
+                            self.error_add = True
+                            self.add = [None, 0]
+                        else:
+                            if self.define_flags_add() == -1:
+                                self.error_add = True
+                                self.add = [None, 0]
+                            else:
+                                self.tree.insert(int(self.input_box1.text))        #inserindo elemento
+                                self.add = ["add", int(self.input_box1.text)]
                         
                 #this is referent to the "send" button of "BUSCA" 
                 elif self.wm.collide_point("imgs/enviar.png",375, 725, mouse_position):
@@ -125,7 +145,8 @@ class Tree_():
                         if self.tree.search_element(int(self.input_box2.text)) == True:      #if the element was founded
                             self.fetch = ["fetch", int(self.input_box2.text)]
                         else:         
-                            print("deu erro total")       
+                            self.error_search = True
+                            self.fetch = [None, 0]   
                                                
                 #this is referent to the "send" button of "CAMINHAMENTO"    
                 elif self.wm.collide_point("imgs/preordem.png",600, 675, mouse_position):     #first button (pre ordem)
@@ -184,13 +205,15 @@ class Tree_():
                                         self.active[7] = True, self.add[1]
                                         self.node_positions[7][2] = self.add[1]
                                 else:
-                                        print("deu erro arvore cheia")
+                                    #print("deu erro arvore cheia")
+                                    return -1
                             else:                              #valor é maior que 2 nó
                                 if self.active[8][0] == False:       
                                     self.active[8] = True, self.add[1]
                                     self.node_positions[8][2] = self.add[1]
                                 else: 
-                                    print("deu erro arvore cheia")
+                                    #print("deu erro arvore cheia")
+                                    return -1
                                         
                     else:             #1º nó a esquerda ja existe e o valor inserido é maior
                         if self.active[4][0] == False: 
@@ -202,13 +225,15 @@ class Tree_():
                                     self.active[9] = True, self.add[1]
                                     self.node_positions[9][2] = self.add[1]
                                 else:
-                                    print("deu erro arvore cheia")
+                                    #print("deu erro arvore cheia")
+                                    return -1
                             else: 
                                 if self.active[10][0] == False:       
                                     self.active[10] = True, self.add[1]
                                     self.node_positions[10][2] = self.add[1]
                                 else:
-                                    print("deu erro arvore cheia")
+                                    #print("deu erro arvore cheia")
+                                    return -1
                         
             else:                #valor inserido maior que a raiz
                 if self.active[2][0] == False:
@@ -226,13 +251,15 @@ class Tree_():
                                     self.active[11] = True, self.add[1]
                                     self.node_positions[11][2] = self.add[1]
                                 else:
-                                    print("deu erro  tree cheia!")
+                                    #print("deu erro  tree cheia!")
+                                    return -1
                             else:
                                 if self.active[12][0] == False:
                                     self.active[12] = True, self.add[1]
                                     self.node_positions[12][2] = self.add[1]
                                 else:
-                                    print("deu erro  tree cheia!")
+                                    #print("deu erro  tree cheia!")
+                                    return -1
                         
                     else:     #valor é maior que o 1 nó a esquerda       
                         if self.active[6][0] == False:      
@@ -245,13 +272,15 @@ class Tree_():
                                     self.active[13] = True, self.add[1]
                                     self.node_positions[13][2] = self.add[1]
                                 else:
-                                    print("deu erro  tree cheia!")
+                                    #print("deu erro  tree cheia!")
+                                    return -1
                             else:
                                 if self.active[14][0] == False:
                                     self.active[14] = True, self.add[1]
                                     self.node_positions[14][2] = self.add[1]
                                 else:
-                                    print("deu erro  tree cheia!")
+                                    #print("deu erro  tree cheia!")
+                                    return -1
             
     def define_flags_fetch(self):
         
