@@ -6,7 +6,9 @@ tree.insert(30)
 tree.insert(20)
 tree.insert(10)
 tree.insert(40)
+tree.insert(100)
 tree.insert(60)
+print(tree.insert(100))
 
 return_f = tree.search_element(100)
 
