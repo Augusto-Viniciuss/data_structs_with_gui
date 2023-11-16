@@ -121,7 +121,6 @@ class Common_Queue():
                 #this is referent to the "send" button of "BUSCA"    
                 elif self.wm.collide_point("imgs/enviar2.png",self.box_x*3+115, self.box_y+self.spacing, mouse_position):
                     element = self.queue.get_begin_element()
-                    print(element)
                     if element == None:
                         self.error_search = True
             

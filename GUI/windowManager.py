@@ -55,6 +55,7 @@ class WindowManager:
         self.window.blit(self.display, (0,0))
         pygame.display.update()
         self.reset_keys()
+        pygame.event.pump()
         
     def draw_rect(self, posx, posy, rect_w, rect_h, color, rectborder = 0):
         rect = pygame.Rect(posx, posy, rect_w, rect_h)
